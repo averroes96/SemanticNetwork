@@ -28,7 +28,6 @@ public class Node {
         this.label = new SimpleStringProperty(label);
         this.isMarked = new SimpleBooleanProperty(isMarked);
         childrens = FXCollections.observableArrayList();
-        parent = new Node();
         
     }
 
@@ -37,7 +36,6 @@ public class Node {
         this.label = new SimpleStringProperty("");
         this.isMarked = new SimpleBooleanProperty(false);
         childrens = FXCollections.observableArrayList();
-        parent = new Node();
         
     }
 
@@ -103,6 +101,10 @@ public class Node {
     
     public boolean HasChildren(){
         return childrens.size() > 0;
+    }
+    
+    public boolean HasGoal(){
+        return parent.getIsMarked();
     }
     
 }

@@ -17,8 +17,9 @@ public class SemanticNetwork {
     private ObservableList<Node> nodes ;
     private ObservableList<Relation> relations ;
 
-    public SemanticNetwork(ObservableList nodes) {
-        this.nodes = nodes;
+    public SemanticNetwork() {
+        this.nodes = FXCollections.observableArrayList();
+        this.relations = FXCollections.observableArrayList();
     }
 
     public ObservableList<Node> getNodes() {
@@ -71,10 +72,42 @@ public class SemanticNetwork {
         
     }
     
-    public void inferInstances(){
-        Node node1 = getMarkedNodes().get(0);
+    public ObservableList<Node> inferChildren(ObservableList<Node> input, Node target){
         
-
+        
+        for(Node node : input){
+            
+            System.out.println(node.getLabel());
+            System.out.println(node.getParent());
+            System.out.println("Target = " + target.getLabel());
+            
+            if(node.getParent().getLabel().equals(target.getLabel()))
+                return node.getParent().getChildrens();
+            if(node.HasChildren())
+                return inferChildren(node.getChildrens(),target);
+        }
+        return null;
+    }
+    
+    public void inferInstances(){
+        
+        Node node1 = getMarkedNodes().get(0);
+        Node node2 = getMarkedNodes().get(1);
+        
+        
+        if(node1.HasChildren()){
+            ObservableList<Node> sol = inferChildren(node1.getChildrens(),node2);
+            
+            if(sol != null){
+                sol.forEach((node) -> {
+                    System.out.println(node);
+                });
+            }
+            else
+                System.out.println("No solution was found 1");
+        }
+        else
+            System.out.println("No solution was found 2");
     }
     
     
