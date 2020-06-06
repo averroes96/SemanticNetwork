@@ -16,6 +16,7 @@ public class SemanticNetwork {
     
     private ObservableList<Node> nodes ;
     private ObservableList<Relation> relations ;
+    public String sol = "";
 
     public SemanticNetwork() {
         this.nodes = FXCollections.observableArrayList();
@@ -72,42 +73,75 @@ public class SemanticNetwork {
         
     }
     
-    public ObservableList<Node> inferChildren(ObservableList<Node> input, Node target){
+    public ObservableList<Node> inferChildren(Node input, Node target){
         
+        ObservableList<Node> results = FXCollections.observableArrayList();
+        ObservableList<Node> temp = FXCollections.observableArrayList();
+        System.out.println(input.getLabel());
+        if(input.getParent().getLabel().equals(target.getLabel())){
+            temp.add(input);
+            return temp;
+        }
+        else{
+            for(Node node : input.getChildrens()){
+                temp = inferChildren(node,target);
+                if(temp != null){
+                    results.addAll(temp);
+                }
+            }
+        }
         
-        for(Node node : input){
-            
-            System.out.println(node.getLabel());
-            System.out.println(node.getParent());
-            System.out.println("Target = " + target.getLabel());
-            
-            if(node.getParent().getLabel().equals(target.getLabel()))
-                return node.getParent().getChildrens();
-            if(node.HasChildren())
-                return inferChildren(node.getChildrens(),target);
+        if(results != null){
+            return results;
         }
         return null;
+            
     }
     
-    public void inferInstances(){
+    public void MarkPropagationInference(){
         
         Node node1 = getMarkedNodes().get(0);
         Node node2 = getMarkedNodes().get(1);
+        ObservableList<Node> solution = FXCollections.observableArrayList();
+        
+        
+        sol += "-------------------- Infering started --------------------";
+        sol += "\n\n> M1(0) = " + node1.getLabel();
+        sol += "\n> M2(0) = " + node2.getLabel();
         
         
         if(node1.HasChildren()){
-            ObservableList<Node> sol = inferChildren(node1.getChildrens(),node2);
             
-            if(sol != null){
-                sol.forEach((node) -> {
-                    System.out.println(node);
-                });
+            for(Node node : node1.getChildrens()){
+                 if(inferChildren(node,node2) != null){
+                     solution.addAll(inferChildren(node,node2));
+                 }
             }
-            else
-                System.out.println("No solution was found 1");
+
+                if(solution != null){
+                    sol += "\n\n> Solution was found:\n" ;
+                    int  cpt=0;
+                    for(Node nd : solution){
+                        cpt++;
+                        sol += "\n\tSol num" + cpt + ": " + nd.getLabel();
+                    }
+                    sol += "\n\n> Total number of solutions = " + solution.size();
+                    sol += "\n\n-------------------- Infering ended --------------------";
+                }
+                else
+                    sol += "\n\n> No solution was found 1";
+            
+
         }
         else
-            System.out.println("No solution was found 2");
+            sol += "\n\n >No solution was found 2";
+        
+        for(Relation relation : relations){
+            
+            System.out.println(relation.getChild() + " => " + relation.getParent());
+            
+        }
+        
     }
     
     
