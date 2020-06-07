@@ -106,3 +106,8 @@
     -fx-stroke-type: inside; /* you should keep this if using arrows */
     -fx-fill: yellowgreen;
 }
+
+.jfx-combo-box > .cell {
+    -fx-text-fill: #FFF; /* change selected text (item) color */
+    -fx-background-color: #30425d; /* change background color */
+}

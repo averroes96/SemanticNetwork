@@ -12,6 +12,7 @@ import com.brunomnsilva.smartgraph.graphview.SmartGraphPanel;
 import com.brunomnsilva.smartgraph.graphview.SmartPlacementStrategy;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import inc.Node;
 import inc.Relation;
 import java.io.IOException;
@@ -30,7 +31,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -46,8 +46,9 @@ public class RelationsController implements Initializable {
 
     @FXML JFXComboBox<Node> child,parent;
     @FXML JFXButton addBtn,nextBtn;
+    @FXML JFXTextField nameField;
     @FXML TableView<Relation> relationTable;
-    @FXML TableColumn<Relation, String> childCol,parentCol;
+    @FXML TableColumn<Relation, String> childCol,parentCol,nameCol;
     @FXML TableColumn actionCol;
     
     private ObservableList<Node> nodeList = FXCollections.observableArrayList();
@@ -75,6 +76,7 @@ public class RelationsController implements Initializable {
         
         childCol.setCellValueFactory(new PropertyValueFactory<>("childName"));
         parentCol.setCellValueFactory(new PropertyValueFactory<>("parentName"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         actionCol.setCellValueFactory(new PropertyValueFactory<>("actionCol"));        
                    

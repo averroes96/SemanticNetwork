@@ -7,7 +7,6 @@ package semanticnetworks;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXToggleButton;
 import inc.Node;
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +35,6 @@ import javafx.util.Callback;
 public class MainController implements Initializable {
     
     @FXML JFXButton addBtn,nextBtn;
-    @FXML JFXToggleButton marked;
     @FXML JFXTextField nameField;
     @FXML TableView<Node> nodeTable;
     @FXML TableColumn<Node,String> nameCol;
@@ -92,7 +90,7 @@ public class MainController implements Initializable {
     
     public void addNode(){
         
-        Node node = new Node(nameField.getText(), marked.isSelected());
+        Node node = new Node(nameField.getText());
         
         nodesList.add(node);
         

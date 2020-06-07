@@ -5,7 +5,10 @@
  */
 package semanticnetworks;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXToggleButton;
 import inc.Node;
 import inc.Relation;
 import inc.SemanticNetwork;
@@ -15,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -24,6 +28,10 @@ import javafx.fxml.Initializable;
 public class SNController implements Initializable {
     
     @FXML private JFXTextArea resultArea;
+    @FXML private Label labelThree,labelFour,labelFive;
+    @FXML private JFXComboBox nodeOne,nodeTwo,nodeThree,nodeFour,nodeFive;
+    @FXML private JFXToggleButton toggleThree,toggleFour,toggleFive;
+    @FXML private JFXButton startBtn;
 
     SemanticNetwork sn = new SemanticNetwork();
     
@@ -43,7 +51,7 @@ public class SNController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ObservableList<Node> nodes = FXCollections.observableArrayList();
+        /*ObservableList<Node> nodes = FXCollections.observableArrayList();
         ObservableList<Relation> relations = FXCollections.observableArrayList();
         
         nodes.add(new Node("reiter",false));
@@ -84,7 +92,7 @@ public class SNController implements Initializable {
         relations.add(new Relation(nodes.get(16),nodes.get(15)));
         relations.add(new Relation(nodes.get(16),nodes.get(17)));
         
-        initNetwork(nodes, relations);
+        initNetwork(nodes, relations);*/
        
     }    
     

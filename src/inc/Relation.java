@@ -16,6 +16,7 @@ public class Relation {
     
     private Node parent;
     private Node child;
+    private SimpleStringProperty name;
     private SimpleStringProperty parentName;
     private SimpleStringProperty childName;
 
@@ -60,7 +61,14 @@ public class Relation {
     public void setChildName(String childName) {
         this.childName = new SimpleStringProperty(childName);
     }
-    
+
+    public String getName() {
+        return name.getValue();
+    }
+
+    public void setName(String name) {
+        this.name = new SimpleStringProperty(name);
+    }
     
 
     @Override

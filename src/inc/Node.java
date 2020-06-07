@@ -23,10 +23,10 @@ public class Node {
     private ObservableList<Node> childrens;
     private Node parent;
     
-    public Node(String label, boolean isMarked) {
+    public Node(String label) {
         
         this.label = new SimpleStringProperty(label);
-        this.isMarked = new SimpleBooleanProperty(isMarked);
+        this.isMarked = new SimpleBooleanProperty(false);
         childrens = FXCollections.observableArrayList();
         
     }
