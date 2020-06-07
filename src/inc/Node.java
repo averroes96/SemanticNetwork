@@ -106,5 +106,6 @@ public class Node {
     public boolean HasGoal(){
         return parent.getIsMarked();
     }
+
     
 }

@@ -108,6 +108,13 @@
 }
 
 .jfx-combo-box > .cell {
-    -fx-text-fill: #FFF; /* change selected text (item) color */
-    -fx-background-color: #30425d; /* change background color */
+    -fx-text-fill: #eee;   
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
 }
+
+.jfx-combo-box .context-menu { -fx-background-color:  #3D4956; }
+.jfx-combo-box.menu-item:focused { -fx-background-color: orange; }
+.jfx-combo-box.menu-item > .label { -fx-text-fill: white; }
+.jfx-combo-box.menu-item:focused > .label { -fx-text-fill: #3D4956; }

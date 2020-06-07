@@ -21,11 +21,17 @@ public class Relation {
     private SimpleStringProperty childName;
 
     public Relation() {
+        this.parent = new Node();
+        this.child = new Node();
+        this.name = new SimpleStringProperty("");
+        this.parentName = new SimpleStringProperty("");
+        this.childName = new SimpleStringProperty("");        
     }
 
-    public Relation(Node parent, Node child) {
+    public Relation(Node parent, Node child, String name) {
         this.parent = parent;
         this.child = child;
+        this.name = new SimpleStringProperty(name);
         this.parentName = new SimpleStringProperty(parent.getLabel());
         this.childName = new SimpleStringProperty(child.getLabel());
     }
@@ -96,6 +102,13 @@ public class Relation {
         }
         return Objects.equals(this.child, other.child);
     }
+
+    @Override
+    public String toString() {
+        return name.getValue();
+    }
+    
+    
   
     
     

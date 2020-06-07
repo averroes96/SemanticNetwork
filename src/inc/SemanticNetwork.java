@@ -144,6 +144,15 @@ public class SemanticNetwork {
         
     }
     
+    public Node getNodeByLabel(String label){
+        
+        for(Node node : this.getNodes()){
+            if(node.getLabel().equals(label))
+                return node;
+        }
+        return null;
+    }
+    
     
     
 }
