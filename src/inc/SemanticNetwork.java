@@ -73,18 +73,18 @@ public class SemanticNetwork {
         
     }
     
-    public ObservableList<Node> inferChildren(Node input, Node target){
+    public ObservableList<Node> inferChildren(Node input, Node target, String relName){
         
         ObservableList<Node> results = FXCollections.observableArrayList();
         ObservableList<Node> temp = FXCollections.observableArrayList();
         System.out.println(input.getLabel());
-        if(input.getParent().getLabel().equals(target.getLabel())){
+        if(input.getParent().getLabel().equals(target.getLabel()) && relExist(target, input, relName)){
             temp.add(input);
             return temp;
         }
         else{
             for(Node node : input.getChildrens()){
-                temp = inferChildren(node,target);
+                temp = inferChildren(node, target, relName);
                 if(temp != null){
                     results.addAll(temp);
                 }
@@ -98,7 +98,7 @@ public class SemanticNetwork {
             
     }
     
-    public void MarkPropagationInference(){
+    public void MarkPropagationInference(String relName){
         
         Node node1 = getMarkedNodes().get(0);
         Node node2 = getMarkedNodes().get(1);
@@ -112,13 +112,11 @@ public class SemanticNetwork {
         
         if(node1.HasChildren()){
             
-            for(Node node : node1.getChildrens()){
-                 if(inferChildren(node,node2) != null){
-                     solution.addAll(inferChildren(node,node2));
-                 }
-            }
+            node1.getChildrens().stream().filter((node) -> (inferChildren(node, node2, relName) != null)).forEachOrdered((node) -> {
+                solution.addAll(inferChildren(node, node2, relName));
+            });
 
-                if(solution != null){
+                if(!solution.isEmpty()){
                     sol += "\n\n> Solution was found:\n" ;
                     int  cpt=0;
                     for(Node nd : solution){
@@ -136,11 +134,9 @@ public class SemanticNetwork {
         else
             sol += "\n\n >No solution was found 2";
         
-        for(Relation relation : relations){
-            
+        relations.forEach((relation) -> {
             System.out.println(relation.getChild() + " => " + relation.getParent());
-            
-        }
+        });
         
     }
     
@@ -151,6 +147,11 @@ public class SemanticNetwork {
                 return node;
         }
         return null;
+    }
+    
+    public boolean relExist(Node nodeOne, Node nodeTwo, String relation){
+        
+        return this.getRelations().stream().anyMatch((rel) -> (rel.getParent().getLabel().equals(nodeOne.getLabel()) && rel.getChild().getLabel().equals(nodeTwo.getLabel()) && rel.getName().equals(relation)));
     }
     
     

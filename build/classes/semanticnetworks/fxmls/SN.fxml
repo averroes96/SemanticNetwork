@@ -74,7 +74,7 @@
             </VBox>
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutX="15.0" layoutY="350.0" prefHeight="100.0" prefWidth="570.0" spacing="5.0">
+      <VBox alignment="CENTER" layoutX="15.0" layoutY="350.0" prefHeight="100.0" prefWidth="570.0" spacing="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <children>
             <Label alignment="CENTER" focusTraversable="false" prefHeight="20.0" prefWidth="100.0" text="RELATION" textFill="#eeeeee">
                <font>
@@ -88,7 +88,7 @@
             </HBox>
          </children>
       </VBox>
-      <HBox alignment="CENTER" layoutX="15.0" layoutY="483.0" prefHeight="41.0" prefWidth="570.0">
+      <HBox alignment="CENTER" layoutX="15.0" layoutY="483.0" prefHeight="41.0" prefWidth="570.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <children>
             <JFXButton fx:id="startBtn" buttonType="RAISED" defaultButton="true" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #408ec6;" text="START" textFill="#1e2761">
                <font>

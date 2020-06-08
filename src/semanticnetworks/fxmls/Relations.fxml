@@ -7,22 +7,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="650.0" style="-fx-background-color: #1e2761;" stylesheets="@../custom.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semanticnetworks.controllers.RelationsController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="650.0" style="-fx-background-color: white;" stylesheets="@../custom.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semanticnetworks.controllers.RelationsController">
    <children>
-      <TableView fx:id="relationTable" layoutX="40.0" layoutY="238.0" prefHeight="275.0" prefWidth="520.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+      <TableView fx:id="relationTable" layoutX="40.0" layoutY="238.0" prefHeight="275.0" prefWidth="520.0" style="-fx-background-color: #eee;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
         <columns>
           <TableColumn fx:id="childCol" prefWidth="150.0" text="CHILD" />
           <TableColumn fx:id="parentCol" prefWidth="150.0" text="PARENT" />
             <TableColumn fx:id="nameCol" prefWidth="150.0" text="NAME" />
             <TableColumn fx:id="actionCol" prefWidth="120.0" text="ACTION" />
         </columns>
+         <effect>
+            <DropShadow />
+         </effect>
       </TableView>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="700.0" text="Please add the network's relations" textFill="#eeeeee" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="700.0" text="Please add the network's relations" textFill="#1e2761" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
@@ -31,7 +35,10 @@
          <children>
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="550.0" spacing="20.0">
                <children>
-                  <JFXComboBox fx:id="child" focusColor="#408ec6" prefHeight="40.0" prefWidth="175.0" style="-fx-background-color: #7a2048; -fx-text-fill: #eee;" unFocusColor="#1e2761" />
+                  <JFXComboBox fx:id="child" focusColor="#408ec6" prefHeight="40.0" prefWidth="175.0" style="-fx-background-color: #7a2048; -fx-text-fill: #eee;" unFocusColor="#1e2761">
+                     <effect>
+                        <DropShadow height="15.0" radius="7.0" width="15.0" />
+                     </effect></JFXComboBox>
                   <JFXTextField fx:id="nameField" alignment="CENTER" focusColor="#7a2048" prefHeight="40.0" prefWidth="175.0" promptText="Name" style="-fx-prompt-text-fill: #bbb; -fx-text-fill: #eee;" unFocusColor="#dddddd">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
@@ -40,7 +47,10 @@
                         <Insets />
                      </opaqueInsets>
                   </JFXTextField>
-                  <JFXComboBox fx:id="parent" focusColor="#408ec6" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="175.0" style="-fx-background-color: #7a2048; -fx-text-fill: #eee;" unFocusColor="#1e2761" />
+                  <JFXComboBox fx:id="parent" focusColor="#408ec6" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="175.0" style="-fx-background-color: #7a2048; -fx-text-fill: #eee;" unFocusColor="#1e2761">
+                     <effect>
+                        <DropShadow height="15.0" radius="7.0" width="15.0" />
+                     </effect></JFXComboBox>
                </children>
             </HBox>
             <JFXButton fx:id="addBtn" buttonType="RAISED" defaultButton="true" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408ec6;" text="ADD" textFill="#1e2761">
@@ -59,12 +69,12 @@
             </JFXButton>
          </children>
       </HBox>
-      <Label alignment="CENTER" layoutX="72.0" layoutY="64.0" prefHeight="40.0" prefWidth="122.0" text="Child" textFill="#eeeeee">
+      <Label alignment="CENTER" layoutX="72.0" layoutY="64.0" prefHeight="40.0" prefWidth="122.0" text="Child" textFill="#1e2761">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="457.0" layoutY="64.0" prefHeight="40.0" prefWidth="122.0" text="Parent" textFill="#eeeeee">
+      <Label alignment="CENTER" layoutX="457.0" layoutY="64.0" prefHeight="40.0" prefWidth="122.0" text="Parent" textFill="#1e2761">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>

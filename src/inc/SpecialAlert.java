@@ -21,7 +21,7 @@ import javafx.scene.layout.Priority;
 
 public class SpecialAlert {
     
-    Alert alert = new Alert(AlertType.NONE);
+    public Alert alert = new Alert(AlertType.NONE);
 
     public void show(String title, String message, AlertType alertType,boolean isExpandable) {
         alert.setTitle(title);

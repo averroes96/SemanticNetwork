@@ -42,6 +42,12 @@ public class MainController implements Initializable {
     @FXML TableColumn actionCol;
     
     private final ObservableList nodesList = FXCollections.observableArrayList();
+    String choice;
+    
+    public void setChoice(String choice){
+        this.choice = choice;
+        System.out.println(this.choice);
+    }
     
     public void initTable(){
         
@@ -112,7 +118,7 @@ public class MainController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/Relations.fxml"));
                 Pane root = (Pane)loader.load();
                 RelationsController rControl = (RelationsController)loader.getController();
-                rControl.setNodes(nodesList);
+                rControl.setNodes(nodesList, choice);
                 Scene scene = new Scene(root);
                 stage.setScene(scene);              
                 stage.show();

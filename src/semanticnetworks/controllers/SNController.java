@@ -14,9 +14,11 @@ import inc.SemanticNetwork;
 import inc.SpecialAlert;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 /**
@@ -96,43 +98,43 @@ public class SNController implements Initializable {
         /*ObservableList<Node> nodes = FXCollections.observableArrayList();
         ObservableList<Relation> relations = FXCollections.observableArrayList();
         
-        nodes.add(new Node("reiter",false));
-        nodes.add(new Node("mrc",true));
-        nodes.add(new Node("axe-ia",false));
-        nodes.add(new Node("ml",false));
-        nodes.add(new Node("mg",false));
-        nodes.add(new Node("lc",false));
-        nodes.add(new Node("lnc",false));
-        nodes.add(new Node("lo1",false));
-        nodes.add(new Node("lo0",false));
-        nodes.add(new Node("lm",false));
-        nodes.add(new Node("ld",false));
-        nodes.add(new Node("ldd",false));
-        nodes.add(new Node("axe-a4",false));
-        nodes.add(new Node("syst",false));
-        nodes.add(new Node("sysd",false));
-        nodes.add(new Node("sys5",false));
-        nodes.add(new Node("axe-7",true));
-        nodes.add(new Node("a>a",false));
+        nodes.add(new Node("reiter"));
+        nodes.add(new Node("mrc"));
+        nodes.add(new Node("axe-ia"));
+        nodes.add(new Node("ml"));
+        nodes.add(new Node("mg"));
+        nodes.add(new Node("lc"));
+        nodes.add(new Node("lnc"));
+        nodes.add(new Node("lo1"));
+        nodes.add(new Node("lo0"));
+        nodes.add(new Node("lm"));
+        nodes.add(new Node("ld"));
+        nodes.add(new Node("ldd"));
+        nodes.add(new Node("axe-a4"));
+        nodes.add(new Node("syst"));
+        nodes.add(new Node("sysd"));
+        nodes.add(new Node("sys5"));
+        nodes.add(new Node("axe-7"));
+        nodes.add(new Node("a>a"));
         
-        relations.add(new Relation(nodes.get(1),nodes.get(0)));
-        relations.add(new Relation(nodes.get(2),nodes.get(1)));
-        relations.add(new Relation(nodes.get(1),nodes.get(3)));
-        relations.add(new Relation(nodes.get(1),nodes.get(4)));
-        relations.add(new Relation(nodes.get(3),nodes.get(5)));
-        relations.add(new Relation(nodes.get(3),nodes.get(6)));
-        relations.add(new Relation(nodes.get(5),nodes.get(7)));
-        relations.add(new Relation(nodes.get(5),nodes.get(8)));
-        relations.add(new Relation(nodes.get(6),nodes.get(9)));
-        relations.add(new Relation(nodes.get(6),nodes.get(10)));
-        relations.add(new Relation(nodes.get(6),nodes.get(11)));
-        relations.add(new Relation(nodes.get(7),nodes.get(12)));
-        relations.add(new Relation(nodes.get(9),nodes.get(13)));
-        relations.add(new Relation(nodes.get(9),nodes.get(14)));
-        relations.add(new Relation(nodes.get(9),nodes.get(15)));
-        relations.add(new Relation(nodes.get(16),nodes.get(13)));
-        relations.add(new Relation(nodes.get(16),nodes.get(15)));
-        relations.add(new Relation(nodes.get(16),nodes.get(17)));
+        relations.add(new Relation(nodes.get(1),nodes.get(0), "dev"));
+        relations.add(new Relation(nodes.get(2),nodes.get(1), "is_a"));
+        relations.add(new Relation(nodes.get(1),nodes.get(3), "is_a"));
+        relations.add(new Relation(nodes.get(1),nodes.get(4), "is_a"));
+        relations.add(new Relation(nodes.get(3),nodes.get(5), "is_a"));
+        relations.add(new Relation(nodes.get(3),nodes.get(6), "is_a"));
+        relations.add(new Relation(nodes.get(5),nodes.get(7), "is_a"));
+        relations.add(new Relation(nodes.get(5),nodes.get(8), "is_a"));
+        relations.add(new Relation(nodes.get(6),nodes.get(9), "is_a"));
+        relations.add(new Relation(nodes.get(6),nodes.get(10), "is_a"));
+        relations.add(new Relation(nodes.get(6),nodes.get(11), "is_a"));
+        relations.add(new Relation(nodes.get(12),nodes.get(7), "contient"));
+        relations.add(new Relation(nodes.get(9),nodes.get(13), "is_a"));
+        relations.add(new Relation(nodes.get(9),nodes.get(14), "is_a"));
+        relations.add(new Relation(nodes.get(9),nodes.get(15), "is_a"));
+        relations.add(new Relation(nodes.get(16),nodes.get(13), "contient"));
+        relations.add(new Relation(nodes.get(16),nodes.get(15), "contient"));
+        relations.add(new Relation(nodes.get(16),nodes.get(17), "is_a"));
         
         initNetwork(nodes, relations);*/
         
@@ -187,7 +189,16 @@ public class SNController implements Initializable {
 
         toggleFive.setOnAction(Action -> {
             toggleAction(toggleFive, nodeFive, labelFive);
-        });        
+        });
+
+        startBtn.setOnAction(Action -> {
+            
+            String msg = sn.sol;
+            sn.MarkPropagationInference(selectedRel.getValue().toString());
+            alert.show("RESULT", msg, Alert.AlertType.INFORMATION, false);
+            
+        });
+        
        
     }    
     

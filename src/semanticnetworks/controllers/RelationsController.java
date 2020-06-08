@@ -5,14 +5,15 @@
  */
 package semanticnetworks.controllers;
 
-import com.brunomnsilva.smartgraph.graph.Graph;
-import com.brunomnsilva.smartgraph.graph.GraphEdgeList;
+import com.brunomnsilva.smartgraph.graph.Digraph;
+import com.brunomnsilva.smartgraph.graph.DigraphEdgeList;
 import com.brunomnsilva.smartgraph.graphview.SmartCircularSortedPlacementStrategy;
 import com.brunomnsilva.smartgraph.graphview.SmartGraphPanel;
 import com.brunomnsilva.smartgraph.graphview.SmartPlacementStrategy;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import inc.EdgeLabel;
 import inc.Node;
 import inc.Relation;
 import java.io.IOException;
@@ -32,6 +33,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -52,12 +54,15 @@ public class RelationsController implements Initializable {
     @FXML TableColumn actionCol;
     
     private ObservableList<Node> nodeList = FXCollections.observableArrayList();
-    private ObservableList<Relation> relationList = FXCollections.observableArrayList();
+    private final ObservableList<Relation> relationList = FXCollections.observableArrayList();
+    String choice;
     
-    public void setNodes(ObservableList nodes){
+    public void setNodes(ObservableList nodes, String choice){
         
         this.nodeList = nodes;
+        this.choice = choice;
         setNodeNames();
+        System.out.println(this.choice);
         
     }
     
@@ -123,15 +128,26 @@ public class RelationsController implements Initializable {
         
     }
     
-    public void initSemanticNetwork(ActionEvent Action){
+    public void initSemanticNetwork(ActionEvent Action, String choice){
         
             try {
                 ((javafx.scene.Node)Action.getSource()).getScene().getWindow().hide();
                 Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/SN.fxml"));
-                Pane root = (Pane)loader.load();
-                SNController snControl = (SNController)loader.getController();
-                snControl.initNetwork(nodeList, relationList);
+                AnchorPane root ;
+                
+                if(choice.equals("mark-prop")){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/SN.fxml"));
+                    root = (AnchorPane)loader.load();
+                    SNController snControl = (SNController)loader.getController();
+                    snControl.initNetwork(nodeList, relationList);
+                }
+                else{
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/Inherit.fxml"));
+                    root = (AnchorPane)loader.load();
+                    InheritController iControl = (InheritController)loader.getController();
+                    iControl.initNetwork(nodeList, relationList);                    
+                }
+                
                 Scene scene = new Scene(root);
                 stage.setScene(scene);              
                 stage.show();
@@ -153,7 +169,7 @@ public class RelationsController implements Initializable {
         
         nextBtn.setOnAction(Action->{
             
-            Graph<Node, Integer> g = new GraphEdgeList<>();
+            Digraph<Node, EdgeLabel> g = new DigraphEdgeList<>();
             int cpt=0;
             
             nodeList.forEach((node) -> {
@@ -162,11 +178,12 @@ public class RelationsController implements Initializable {
             
             for(Relation relation : relationList){
                 cpt++;
-               g.insertEdge(relation.getParent(), relation.getChild(), cpt);
+               g.insertEdge(relation.getParent(), relation.getChild(), new EdgeLabel(relation.getParent(), relation.getChild(), relation.getName()));
             }
             
             SmartPlacementStrategy strategy = new SmartCircularSortedPlacementStrategy();
-            SmartGraphPanel<Node, Integer> graphView = new SmartGraphPanel<>(g, strategy);
+            SmartGraphPanel<Node, EdgeLabel> graphView = new SmartGraphPanel<>(g, strategy);
+            
             graphView.setVertexDoubleClickAction(graphVertex -> {
                 System.out.println("Vertex contains element: " + graphVertex.getUnderlyingVertex().element());
             });
@@ -176,6 +193,7 @@ public class RelationsController implements Initializable {
                 //dynamically change the style, can also be done for a vertex
                 graphEdge.setStyle("-fx-stroke: black; -fx-stroke-width: 2;");
             });
+            
             Scene scene = new Scene(graphView, 1024, 768);
             scene.getStylesheets().add(getClass().getResource("/semanticnetworks/custom.css").toExternalForm());
             Stage stage = new Stage(StageStyle.DECORATED);
@@ -186,7 +204,7 @@ public class RelationsController implements Initializable {
             //IMPORTANT - Called after scene is displayed so we can have width and height values
             graphView.init();
 
-            initSemanticNetwork(Action);
+            initSemanticNetwork(Action, choice);
         });        
     }    
     
