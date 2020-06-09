@@ -21,14 +21,14 @@ public class Node {
     private SimpleStringProperty label;
     private SimpleBooleanProperty isMarked;
     private ObservableList<Node> childrens;
-    private Node parent;
+    private ObservableList<Node> parent;
     
     public Node(String label) {
         
         this.label = new SimpleStringProperty(label);
         this.isMarked = new SimpleBooleanProperty(false);
         childrens = FXCollections.observableArrayList();
-        
+        parent = FXCollections.observableArrayList();
     }
 
     public Node() {
@@ -91,21 +91,47 @@ public class Node {
         this.childrens = childrens;
     }
 
-    public Node getParent() {
+    public ObservableList<Node> getParent() {
         return parent;
     }
 
-    public void setParent(Node parent) {
+    public void setParent(ObservableList<Node> parent) {
         this.parent = parent;
     }
     
-    public boolean HasChildren(){
+    public boolean hasChildren(){
         return childrens.size() > 0;
     }
     
-    public boolean HasGoal(){
-        return parent.getIsMarked();
+    public boolean hasParent(){
+        return parent.size() > 0;
+    }
+    
+    public Node getParentByName(String name){
+        
+        for(Node node : parent){
+            if(node.getLabel().equals(name))
+                return node;
+        }
+        return null;
+    }
+    
+    public boolean parentExist(String name){
+        return getParentByName(name) != null;
     }
 
+    /*public ObservableList<Node> parrentChilds(){
+        
+        ObservableList<Node> noChilds = FXCollections.observableArrayList();
+        
+        parent.stream().filter((node) -> (!node.hasChildren())).forEachOrdered((node) -> {
+            noChilds.add(node);
+        });     
+        
+    }*/
+    
+    public boolean hasNoParent(){
+        return this.getParent().isEmpty();
+    }
     
 }

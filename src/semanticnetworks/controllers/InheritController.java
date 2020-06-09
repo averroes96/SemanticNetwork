@@ -14,6 +14,7 @@ import inc.SemanticNetwork;
 import inc.SpecialAlert;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,14 +43,32 @@ public class InheritController implements Initializable {
         
         selectedNode.setItems(sn.getNodes());
         
-        //sn.MarkPropagationInference();
-        
-        //resultArea.setText(sn.sol);
+        sn.inheritanceInference();
         
     }    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        ObservableList<Node> nodes = FXCollections.observableArrayList();
+        ObservableList<Relation> relations = FXCollections.observableArrayList();
+        
+        nodes.add(new Node("mortel"));
+        nodes.add(new Node("animal"));
+        nodes.add(new Node("Vertébrés"));
+        nodes.add(new Node("Oiseaux"));
+        nodes.add(new Node("Moineaux"));
+        nodes.add(new Node("Titi"));
+        nodes.add(new Node("os"));
+        
+        relations.add(new Relation(nodes.get(0),nodes.get(1), "est_un"));
+        relations.add(new Relation(nodes.get(1),nodes.get(2), "est_un"));
+        relations.add(new Relation(nodes.get(2),nodes.get(3), "est_un"));
+        relations.add(new Relation(nodes.get(3),nodes.get(4), "est_un"));
+        relations.add(new Relation(nodes.get(4),nodes.get(5), "est_un"));
+        relations.add(new Relation(nodes.get(6),nodes.get(2), "a_pour_partie"));
+        
+        initNetwork(nodes, relations);       
         
     }    
     

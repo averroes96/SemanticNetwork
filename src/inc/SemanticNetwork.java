@@ -5,6 +5,7 @@
  */
 package inc;
 
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,6 +17,7 @@ public class SemanticNetwork {
     
     private ObservableList<Node> nodes ;
     private ObservableList<Relation> relations ;
+    private ArrayList allInferences = new ArrayList();
     public String sol = "";
 
     public SemanticNetwork() {
@@ -67,7 +69,7 @@ public class SemanticNetwork {
         
         this.nodes.forEach((node) -> {
             this.relations.stream().filter((relation) -> (relation.getChild().equals(node))).forEachOrdered((relation) -> {
-                node.setParent(relation.getParent());
+                node.getParent().add(relation.getParent());
             });
         });        
         
@@ -77,8 +79,8 @@ public class SemanticNetwork {
         
         ObservableList<Node> results = FXCollections.observableArrayList();
         ObservableList<Node> temp = FXCollections.observableArrayList();
-        System.out.println(input.getLabel());
-        if(input.getParent().getLabel().equals(target.getLabel()) && relExist(target, input, relName)){
+        
+        if(input.parentExist(target.getLabel())&& relExist(target, input, relName)){
             temp.add(input);
             return temp;
         }
@@ -110,7 +112,7 @@ public class SemanticNetwork {
         sol += "\n> M2(0) = " + node2.getLabel();
         
         
-        if(node1.HasChildren()){
+        if(node1.hasChildren()){
             
             node1.getChildrens().stream().filter((node) -> (inferChildren(node, node2, relName) != null)).forEachOrdered((node) -> {
                 solution.addAll(inferChildren(node, node2, relName));
@@ -154,6 +156,73 @@ public class SemanticNetwork {
         return this.getRelations().stream().anyMatch((rel) -> (rel.getParent().getLabel().equals(nodeOne.getLabel()) && rel.getChild().getLabel().equals(nodeTwo.getLabel()) && rel.getName().equals(relation)));
     }
     
+    public ObservableList<Node> getRoots(){
+        
+        ObservableList<Node> temp = FXCollections.observableArrayList();
+        
+        this.nodes.stream().filter((node) -> (node.hasNoParent())).forEachOrdered((node) -> {
+            temp.add(node);
+        });
+        return temp;
+    }
     
+    public ArrayList<String> inferChildren(Node input){
+        
+        ArrayList<String> results = new ArrayList<>();
+        ArrayList<String> temp = new ArrayList<>();
+        
+        
+        
+        if(input.hasParent()){
+            temp.add("#");
+            return temp;
+        }
+        else{
+            
+            for(Node node : input.getChildrens()){
+                System.out.println(node.getLabel());
+                results.add(node.getLabel() + " " + getRelation(input, node) + " " + input.getLabel());
+                temp = inferChildren(node);
+                if(temp != null){
+                    results.addAll(temp);
+                }
+                
+            }
+        }
+        
+        return results;
+            
+    }    
+    
+    public void inheritanceInference(){
+        
+         ObservableList<Node> temp = getRoots();
+         ArrayList<String> results = new ArrayList<>();
+         
+         if(temp != null){
+             
+             temp.forEach((node) -> {
+                 results.addAll(inferChildren(node));
+             });
+             
+         }
+         
+         results.forEach((str) -> {
+             System.out.println(str);
+        });
+        
+        
+    }
+    
+    public String getRelation(Node parent, Node children){
+        
+        for(Relation relation : this.relations){
+            if(relation.getParent().getLabel().equals(parent.getLabel())
+                    && relation.getChild().getLabel().equals(children.getLabel()))
+                return relation.getName();
+        }
+        
+        return null;
+    }
     
 }
