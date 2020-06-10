@@ -75,7 +75,30 @@ public class InheritController implements Initializable {
         relations.add(new Relation(nodes.get(6),nodes.get(2), "a_pour_partie"));
         relations.add(new Relation(nodes.get(7),nodes.get(3), "a_pour_partie"));
         
-        initNetwork(nodes, relations);*/
+        initNetwork(nodes, relations);
+        
+        ObservableList<Node> nodes = FXCollections.observableArrayList();
+        ObservableList<Relation> relations = FXCollections.observableArrayList();
+        
+        nodes.add(new Node("Les Français"));
+        nodes.add(new Node("Libanais"));
+        nodes.add(new Node("Chrétiens libanais"));
+        nodes.add(new Node("Melkites"));
+        nodes.add(new Node("Maronite"));
+        nodes.add(new Node("Non Arabe"));
+        
+        relations.add(new Relation(nodes.get(0),nodes.get(1), "parle"));
+        relations.add(new Relation(nodes.get(0),nodes.get(2), "is_not"));
+        relations.add(new Relation(nodes.get(1),nodes.get(2), "is_a"));
+        relations.add(new Relation(nodes.get(2),nodes.get(3), "is_a"));
+        relations.add(new Relation(nodes.get(4),nodes.get(2), "is_a"));
+        relations.add(new Relation(nodes.get(5),nodes.get(2), "is_a"));
+        relations.add(new Relation(nodes.get(4),nodes.get(3), "is_not"));
+        relations.add(new Relation(nodes.get(5),nodes.get(3), "is_not"));
+        relations.add(new Relation(nodes.get(0),nodes.get(3), "is_not"));
+        
+        initNetwork(nodes, relations);      */   
+        
         
         startBtn.setOnAction(Action -> {
             

@@ -81,7 +81,7 @@ public class SemanticNetwork {
         ObservableList<Node> results = FXCollections.observableArrayList();
         ObservableList<Node> temp = FXCollections.observableArrayList();
         
-        if(input.parentExist(target.getLabel())&& relExist(target, input, relName)){
+        if(input.parentExist(target.getLabel()) && relExist(target, input, relName)){
             temp.add(input);
             return temp;
         }
@@ -227,18 +227,18 @@ public class SemanticNetwork {
     public ObservableList<Relation> inheritChilds(Node input, Node root, String relName){
         
         ObservableList<Relation> results = FXCollections.observableArrayList();
-        ObservableList<Relation> temp = FXCollections.observableArrayList();
-       
+        ObservableList<Relation> temp = FXCollections.observableArrayList();        
         
-        if(!input.hasChildren() ){
-            if(!relExist(root, input, relName)){
+        if(!input.hasChildren()){
+            if(!relExist(root, input, relName) && !isException(root, input)){
                 temp.add(new Relation(root, input, relName));
             }
             return temp;
         }
         else
         {
-            if(!relExist(root, input, relName)){
+            
+            if(!relExist(root, input, relName) && !isException(root, input)){
                     results.add(new Relation(root, input, relName));
             }            
             for(Node node : input.getChildrens()){
@@ -246,6 +246,10 @@ public class SemanticNetwork {
                 
                 if(temp != null){
                 results.addAll(temp);
+                }
+                
+                if(relName == null ? getRelation(node, input) != null : !relName.equals(getRelation(input, node))){
+                    relName = getRelation(input, node);
                 }
                 
                 temp = inheritChilds(node, input, relName);
@@ -272,9 +276,10 @@ public class SemanticNetwork {
             });
         });
         
-        sol += relations.size() + " relation(s) were found \n\n";
         this.relations.forEach((relation) -> {
-            sol += relation.getChild() + " " + relation.getName() +" " + relation.getParent() + "\n";
+            if(!relation.getName().equals("is_not")){
+                sol += relation.getChild() + " " + relation.getName() + " " + relation.getParent() + "\n";
+            }
         });
         
     }
@@ -283,9 +288,17 @@ public class SemanticNetwork {
         
         String str = "";
         
-        str = this.relations.stream().filter((rel) -> (rel.getChild().equals(node))).map((rel) -> "> " + rel.getChild() + " " + rel.getName() + " " + rel.getParent() + "\n").reduce(str, String::concat);
+        str = this.relations.stream().filter((rel) -> (rel.getChild().equals(node) && !rel.getName().equals("is_not"))).map((rel) -> "> " + rel.getChild() + " " + rel.getName() + " " + rel.getParent() + "\n").reduce(str, String::concat);
         
         return str;
+    }
+    
+    public boolean isException(Node parent, Node child){
+        
+        return this.relations.stream().anyMatch((rel) -> (rel.getParent().equals(parent) && 
+                rel.getChild().equals(child) &&
+                rel.getName().equals("is_not")));
+        
     }
     
 }
