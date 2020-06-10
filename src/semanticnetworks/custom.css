@@ -119,6 +119,6 @@
 .jfx-combo-box.menu-item > .label { -fx-text-fill: white; }
 .jfx-combo-box.menu-item:focused > .label { -fx-text-fill:  #7a2048; }
 
-.jfx-button {
+.jfx-button, .jfx-combo-box {
     -fx-cursor: hand;
 }

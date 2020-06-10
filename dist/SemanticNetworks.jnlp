@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SemanticNetworks.jar" size="34687" download="eager" />
+    <jar href="SemanticNetworks.jar" size="35904" download="eager" />
     <jar href="lib\JavaFXSmartGraph-0.9.1.jar" size="67175" download="eager" />
     <jar href="lib\commons-lang3-3.10.jar" size="523372" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />

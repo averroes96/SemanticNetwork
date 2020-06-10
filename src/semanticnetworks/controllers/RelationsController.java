@@ -21,6 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -205,7 +206,9 @@ public class RelationsController implements Initializable {
             graphView.init();
 
             initSemanticNetwork(Action, choice);
-        });        
+        });
+
+        nextBtn.disableProperty().bind(Bindings.size(relationTable.getItems()).isEqualTo(0));
     }    
     
 }

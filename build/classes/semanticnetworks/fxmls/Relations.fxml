@@ -39,7 +39,7 @@
                      <effect>
                         <DropShadow height="15.0" radius="7.0" width="15.0" />
                      </effect></JFXComboBox>
-                  <JFXTextField fx:id="nameField" alignment="CENTER" focusColor="#7a2048" prefHeight="40.0" prefWidth="175.0" promptText="Name" style="-fx-prompt-text-fill: #bbb; -fx-text-fill: #eee;" unFocusColor="#dddddd">
+                  <JFXTextField fx:id="nameField" alignment="CENTER" focusColor="#7a2048" prefHeight="40.0" prefWidth="175.0" promptText="Name" style="-fx-prompt-text-fill: #bbb; -fx-text-fill: #1e2761;" unFocusColor="#dddddd">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
@@ -62,7 +62,7 @@
       </VBox>
       <HBox alignment="CENTER" layoutX="40.0" layoutY="536.0" prefHeight="50.0" prefWidth="520.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <children>
-            <JFXButton fx:id="nextBtn" buttonType="RAISED" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408ec6;" text="NEXT" textFill="#1e2761">
+            <JFXButton fx:id="nextBtn" buttonType="RAISED" cancelButton="true" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408ec6;" text="NEXT" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>

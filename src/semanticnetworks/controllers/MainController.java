@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -46,7 +47,6 @@ public class MainController implements Initializable {
     
     public void setChoice(String choice){
         this.choice = choice;
-        System.out.println(this.choice);
     }
     
     public void initTable(){
@@ -126,6 +126,9 @@ public class MainController implements Initializable {
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
+        nextBtn.disableProperty().bind(Bindings.size(nodeTable.getItems()).lessThan(2));
+        
     }    
     
 }

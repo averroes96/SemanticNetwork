@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.DropShadow?>
@@ -10,23 +11,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="semanticnetworks.controllers.InheritController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" stylesheets="@../custom.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semanticnetworks.controllers.InheritController">
    <children>
       <Label alignment="CENTER" layoutX="-15.0" layoutY="14.0" prefHeight="40.0" prefWidth="700.0" text="All the possible inferences are :" textFill="#1e2761" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <JFXTextArea fx:id="all" editable="false" focusTraversable="false" layoutX="22.0" layoutY="54.0" prefHeight="250.0" prefWidth="580.0" style="-fx-background-color: #eee;" unFocusColor="#dddddd" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+      <JFXTextArea fx:id="all" editable="false" focusTraversable="false" layoutX="22.0" layoutY="54.0" prefHeight="300.0" prefWidth="570.0" style="-fx-background-color: #eee;" unFocusColor="#dddddd" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font name="Consolas Bold" size="14.0" />
          </font>
          <effect>
             <DropShadow />
          </effect>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </JFXTextArea>
-      <VBox alignment="CENTER" layoutY="362.0" prefHeight="180.0" prefWidth="600.0" spacing="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <VBox alignment="CENTER" layoutY="394.0" prefHeight="180.0" prefWidth="600.0" spacing="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label alignment="CENTER" prefHeight="20.0" prefWidth="600.0" text="Select a node to infer all the related properties" textFill="#1e2761">
                <font>
@@ -45,6 +48,6 @@
             </JFXButton>
          </children>
       </VBox>
-      <Separator layoutX="200.0" layoutY="317.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutY="376.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

@@ -19,7 +19,7 @@ public class Launcher extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/semanticnetworks/fxmls/Inherit.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/semanticnetworks/fxmls/Choice.fxml"));
         
         Scene scene = new Scene(root);
         

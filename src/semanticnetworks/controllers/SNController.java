@@ -40,6 +40,8 @@ public class SNController implements Initializable {
     
     public void initNetwork(ObservableList<Node> nodes, ObservableList<Relation> relation){
         
+        int cpt = 0;
+        
         sn.setNodes(nodes);
         sn.setRelations(relation);
         
@@ -50,9 +52,9 @@ public class SNController implements Initializable {
         nodeTwo.setItems(sn.getNodes());
         nodeThree.setItems(sn.getNodes());
         nodeFour.setItems(sn.getNodes());
-        nodeFive.setItems(sn.getNodes());
+        nodeFive.setItems(sn.getNodes());           
         
-        selectedRel.setItems(sn.getRelations());
+        selectedRel.setItems(sn.getRelations());     
         
         //sn.MarkPropagationInference();
         
@@ -98,23 +100,23 @@ public class SNController implements Initializable {
         /*ObservableList<Node> nodes = FXCollections.observableArrayList();
         ObservableList<Relation> relations = FXCollections.observableArrayList();
         
-        nodes.add(new Node("reiter"));
-        nodes.add(new Node("mrc"));
-        nodes.add(new Node("axe-ia"));
-        nodes.add(new Node("ml"));
-        nodes.add(new Node("mg"));
-        nodes.add(new Node("lc"));
-        nodes.add(new Node("lnc"));
-        nodes.add(new Node("lo1"));
-        nodes.add(new Node("lo0"));
-        nodes.add(new Node("lm"));
-        nodes.add(new Node("ld"));
-        nodes.add(new Node("ldd"));
-        nodes.add(new Node("axe-a4"));
-        nodes.add(new Node("syst"));
-        nodes.add(new Node("sysd"));
-        nodes.add(new Node("sys5"));
-        nodes.add(new Node("axe-7"));
+        nodes.add(new Node("Reiter"));
+        nodes.add(new Node("Modes de Représentations des connaissances"));
+        nodes.add(new Node("Axe-IA"));
+        nodes.add(new Node("Modes Logiques"));
+        nodes.add(new Node("Modes Graphiques"));
+        nodes.add(new Node("Logiques Classiques"));
+        nodes.add(new Node("Logiques Non classiques"));
+        nodes.add(new Node("Logique D’ordre 1"));
+        nodes.add(new Node("Logique D’ordre 0"));
+        nodes.add(new Node("Logique Modale"));
+        nodes.add(new Node("Logique Des défauts"));
+        nodes.add(new Node("Logiques De description"));
+        nodes.add(new Node("Axiome A4"));
+        nodes.add(new Node("Système T"));
+        nodes.add(new Node("Système D"));
+        nodes.add(new Node("Système S5"));
+        nodes.add(new Node("Axiome A7"));
         nodes.add(new Node("a>a"));
         
         relations.add(new Relation(nodes.get(1),nodes.get(0), "dev"));
@@ -193,11 +195,39 @@ public class SNController implements Initializable {
 
         startBtn.setOnAction(Action -> {
             
+            sn.sol = "";
+            
+            int cpt = 0;
+
+            if(toggleThree.isSelected())
+                cpt++;
+            if(toggleFour.isSelected())
+                cpt++;
+            if(toggleFive.isSelected())
+                cpt++;            
+            
             String msg = sn.sol;
-            sn.MarkPropagationInference(selectedRel.getValue().toString());
-            alert.show("RESULT", msg, Alert.AlertType.INFORMATION, false);
+            switch(cpt){
+                case 0: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue().toString());  
+                        break;
+                case 1: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue().toString());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue().toString());
+                        break;
+                case 2: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue().toString());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue().toString());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFour.getValue(), selectedRel.getValue().toString());
+                        break;
+                case 3: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue().toString());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue().toString());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFour.getValue(), selectedRel.getValue().toString());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFive.getValue(), selectedRel.getValue().toString());
+                        break;
+            }
+            alert.show("RESULT", sn.sol, Alert.AlertType.INFORMATION, false);
             
         });
+        
+        
         
         
         

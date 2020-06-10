@@ -17,12 +17,13 @@ public class SemanticNetwork {
     
     private ObservableList<Node> nodes ;
     private ObservableList<Relation> relations ;
-    private ArrayList allInferences = new ArrayList();
+    
     public String sol = "";
 
     public SemanticNetwork() {
         this.nodes = FXCollections.observableArrayList();
         this.relations = FXCollections.observableArrayList();
+        sol = "" ;
     }
 
     public ObservableList<Node> getNodes() {
@@ -100,45 +101,40 @@ public class SemanticNetwork {
             
     }
     
-    public void MarkPropagationInference(String relName){
-        
-        Node node1 = getMarkedNodes().get(0);
-        Node node2 = getMarkedNodes().get(1);
+    public void MarkPropagationInference(Node one, Node two, String relName){
+              
+
         ObservableList<Node> solution = FXCollections.observableArrayList();
         
         
-        sol += "-------------------- Infering started --------------------";
-        sol += "\n\n> M1(0) = " + node1.getLabel();
-        sol += "\n> M2(0) = " + node2.getLabel();
+        sol += "\n-------------------- Infering started --------------------";
+        sol += "\n\n> M1(0) = " + one.getLabel();
+        sol += "\n> M2(0) = " + two.getLabel();
         
         
-        if(node1.hasChildren()){
+        if(one.hasChildren()){
             
-            node1.getChildrens().stream().filter((node) -> (inferChildren(node, node2, relName) != null)).forEachOrdered((node) -> {
-                solution.addAll(inferChildren(node, node2, relName));
+            one.getChildrens().stream().filter((node) -> (inferChildren(node, two, relName) != null)).forEachOrdered((node) -> {
+                solution.addAll(inferChildren(node, two, relName));
             });
 
                 if(!solution.isEmpty()){
                     sol += "\n\n> Solution was found:\n" ;
-                    int  cpt=0;
+                    int  cpt2=0;
                     for(Node nd : solution){
-                        cpt++;
-                        sol += "\n\tSol num" + cpt + ": " + nd.getLabel();
+                        cpt2++;
+                        sol += "\n\tSol num" + cpt2 + ": " + nd.getLabel();
                     }
                     sol += "\n\n> Total number of solutions = " + solution.size();
                     sol += "\n\n-------------------- Infering ended --------------------";
                 }
                 else
-                    sol += "\n\n> No solution was found 1";
+                    sol += "\n\n> No solution was found";
             
 
         }
         else
-            sol += "\n\n >No solution was found 2";
-        
-        relations.forEach((relation) -> {
-            System.out.println(relation.getChild() + " => " + relation.getParent());
-        });
+            sol += "\n\n >No solution was found for";        
         
     }
     
@@ -166,21 +162,21 @@ public class SemanticNetwork {
         return temp;
     }
     
-    public ArrayList<String> inferChildren(Node input){
+/*    public ArrayList<String> inferChildren(Node input){
         
         ArrayList<String> results = new ArrayList<>();
         ArrayList<String> temp = new ArrayList<>();
         
         
-        
-        if(input.hasParent()){
+        if(!input.hasChildren()){
             temp.add("#");
             return temp;
         }
-        else{
+        else
+        {
             
             for(Node node : input.getChildrens()){
-                System.out.println(node.getLabel());
+                
                 results.add(node.getLabel() + " " + getRelation(input, node) + " " + input.getLabel());
                 temp = inferChildren(node);
                 if(temp != null){
@@ -207,12 +203,15 @@ public class SemanticNetwork {
              
          }
          
+         
          results.forEach((str) -> {
-             System.out.println(str);
+             sol += str + "\n";
         });
         
         
     }
+
+*/
     
     public String getRelation(Node parent, Node children){
         
@@ -223,6 +222,70 @@ public class SemanticNetwork {
         }
         
         return null;
+    }
+    
+    public ObservableList<Relation> inheritChilds(Node input, Node root, String relName){
+        
+        ObservableList<Relation> results = FXCollections.observableArrayList();
+        ObservableList<Relation> temp = FXCollections.observableArrayList();
+       
+        
+        if(!input.hasChildren() ){
+            if(!relExist(root, input, relName)){
+                temp.add(new Relation(root, input, relName));
+            }
+            return temp;
+        }
+        else
+        {
+            if(!relExist(root, input, relName)){
+                    results.add(new Relation(root, input, relName));
+            }            
+            for(Node node : input.getChildrens()){
+                temp = inheritChilds(node, root, relName);
+                
+                if(temp != null){
+                results.addAll(temp);
+                }
+                
+                temp = inheritChilds(node, input, relName);
+                if(temp != null){
+                results.addAll(temp);
+                }                
+                
+            }
+        }
+        
+        return results;
+        
+    }
+    
+    public void Inheritance(){
+        
+        ObservableList<Node> temp = getRoots();
+        
+        temp.forEach((one) -> {
+            one.getChildrens().forEach((two) -> {
+                inheritChilds(two, one, getRelation(one, two)).stream().filter((rel) -> (!this.relations.contains(rel))).forEachOrdered((rel) -> {
+                    this.relations.add(rel);
+                });
+            });
+        });
+        
+        sol += relations.size() + " relation(s) were found \n\n";
+        this.relations.forEach((relation) -> {
+            sol += relation.getChild() + " " + relation.getName() +" " + relation.getParent() + "\n";
+        });
+        
+    }
+    
+    public String getNodeProperties(Node node){
+        
+        String str = "";
+        
+        str = this.relations.stream().filter((rel) -> (rel.getChild().equals(node))).map((rel) -> "> " + rel.getChild() + " " + rel.getName() + " " + rel.getParent() + "\n").reduce(str, String::concat);
+        
+        return str;
     }
     
 }
