@@ -16,6 +16,7 @@ import com.jfoenix.controls.JFXTextField;
 import inc.EdgeLabel;
 import inc.Node;
 import inc.Relation;
+import inc.SpecialAlert;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,13 +30,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -57,13 +58,13 @@ public class RelationsController implements Initializable {
     private ObservableList<Node> nodeList = FXCollections.observableArrayList();
     private final ObservableList<Relation> relationList = FXCollections.observableArrayList();
     String choice;
+    SpecialAlert alert = new SpecialAlert();
     
     public void setNodes(ObservableList nodes, String choice){
         
         this.nodeList = nodes;
         this.choice = choice;
         setNodeNames();
-        System.out.println(this.choice);
         
     }
     
@@ -122,10 +123,16 @@ public class RelationsController implements Initializable {
     }
     
     public void addRelation(){
-
-        Relation relation = new Relation(parent.getValue(), child.getValue(), nameField.getText());
         
-        relationList.add(relation);        
+        if(relationExist()){
+            alert.show("RELATION EXIST", "This relation already exist", Alert.AlertType.ERROR, false);
+        }
+        else if(nameField.getText().trim().equals(""))
+            alert.show("EMPTY NAME", "Relation name cannot be empty", Alert.AlertType.ERROR, false);
+        else{
+            Relation relation = new Relation(parent.getValue(), child.getValue(), nameField.getText());
+            relationList.add(relation);        
+        }
         
     }
     
@@ -137,9 +144,9 @@ public class RelationsController implements Initializable {
                 AnchorPane root ;
                 
                 if(choice.equals("mark-prop")){
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/SN.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/MP.fxml"));
                     root = (AnchorPane)loader.load();
-                    SNController snControl = (SNController)loader.getController();
+                    MPController snControl = (MPController)loader.getController();
                     snControl.initNetwork(nodeList, relationList);
                 }
                 else{
@@ -153,10 +160,24 @@ public class RelationsController implements Initializable {
                 stage.setScene(scene);              
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(NodesController.class.getName()).log(Level.SEVERE, null, ex);
             }
         
     }
+    
+    public boolean relationExist(){
+        
+        return 
+                this.relationList.
+                    stream().
+                        anyMatch((rel) -> 
+                            ( 
+                                rel.getName().equalsIgnoreCase(nameField.getText()) 
+                                        && rel.getChild().equals(child.getValue()) 
+                                            && rel.getParent().equals(parent.getValue())
+                            )
+                                );
+    }     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -10,7 +10,7 @@
    <children>
       <VBox alignment="CENTER" layoutX="80.0" layoutY="119.0" prefHeight="200.0" prefWidth="379.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton fx:id="markProp" buttonType="RAISED" defaultButton="true" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #408ec6;" text="MARK-PROPAGATION" textFill="#1e2761">
+            <JFXButton fx:id="markProp" buttonType="RAISED" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #408ec6;" text="MARK-PROPAGATION" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
@@ -18,7 +18,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="inherit" buttonType="RAISED" defaultButton="true" layoutX="85.0" layoutY="90.0" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #408ec6;" text="INHERITANCE" textFill="#1e2761">
+            <JFXButton fx:id="inherit" buttonType="RAISED" layoutX="85.0" layoutY="90.0" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #408ec6;" text="INHERITANCE" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>

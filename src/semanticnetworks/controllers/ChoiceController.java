@@ -36,15 +36,15 @@ public class ChoiceController implements Initializable {
             try {
                 ((javafx.scene.Node)Action.getSource()).getScene().getWindow().hide();
                 Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/Main.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/Nodes.fxml"));
                 Pane root = (Pane)loader.load();
-                MainController mControl = (MainController)loader.getController();
+                NodesController mControl = (NodesController)loader.getController();
                 mControl.setChoice(choice);
                 Scene scene = new Scene(root);
                 stage.setScene(scene);              
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(NodesController.class.getName()).log(Level.SEVERE, null, ex);
             }
             
     }
