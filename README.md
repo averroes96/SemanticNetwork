@@ -18,3 +18,17 @@ This is a study project which aim to implement Semantic networks and three of it
 - [jfoenix-8.0.8](http://jfoenix.com/)
 - [commons-lang3-3.10](http://commons.apache.org/proper/commons-lang/download_lang.cgi)
 - [JavaFXSmartGraph-0.9.1](https://github.com/brunomnsilva/JavaFXSmartGraph)
+
+## Screenshots
+
+Nodes           |
+:---------------------:|
+![Nodes interface](screenshots/2.png) |
+
+Relations           |
+:---------------------:|
+![Relations interface](screenshots/3.png) |
+
+Inheritance           |
+:---------------------:|
+![Inheritance interface](screenshots/8.png) |
