@@ -68,10 +68,6 @@ public class MPController implements Initializable {
             sn.getNodeByLabel(str).setIsMarked(false);
             }
             sn.getNodeByLabel(node.getValue().getLabel()).setIsMarked(true);
-            
-            sn.getNodes().forEach((nd) -> {
-                System.out.println("Name = " + nd.getLabel() + "\t" + "Marked? = " + nd.getIsMarked());
-            });
         
     }
     
