@@ -32,3 +32,11 @@ Relations           |
 Inheritance           |
 :---------------------:|
 ![Inheritance interface](screenshots/8.png) |
+
+Mark-Propagation           |
+:---------------------:|
+![Mark-Propagation interface](screenshots/5.png) |
+
+### Notes
+- Exceptions works only with inheritance algorithm
+- To add a relation of type simple exception just give it the name "is_not"
