@@ -8,6 +8,10 @@ This is a study project which aim to implement Semantic networks and three of it
 * [x] Deduce all the properties relating to a specific node.
 * [x] Displat the network's graph view
 
+### Notes
+- Exceptions works only with inheritance algorithm
+- To add a relation of type simple exception just give it the name `is_not`
+
 ## IDE
 [Netbeans](https://netbeans.org/)
 
@@ -36,7 +40,3 @@ Inheritance           |
 Mark-Propagation           |
 :---------------------:|
 ![Mark-Propagation interface](screenshots/5.png) |
-
-### Notes
-- Exceptions works only with inheritance algorithm
-- To add a relation of type simple exception just give it the name "is_not"
