@@ -1,4 +1,4 @@
-# SemanticNetworkFX
+# SemanticNetwork
 This is a study project which aim to implement Semantic networks and three of its major infering techniques : Mark-Propagation, Inheritance and exceptions.
 
 ## Features
