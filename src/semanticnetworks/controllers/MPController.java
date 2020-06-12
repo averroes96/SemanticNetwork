@@ -8,13 +8,13 @@ package semanticnetworks.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXToggleButton;
+import inc.Init;
 import inc.Node;
 import inc.Relation;
 import inc.SemanticNetwork;
 import inc.SpecialAlert;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,11 +26,11 @@ import javafx.scene.control.Label;
  *
  * @author user
  */
-public class MPController implements Initializable {
+public class MPController implements Initializable,Init {
     
     @FXML private Label labelThree,labelFour,labelFive;
     @FXML private JFXComboBox<Node> nodeOne,nodeTwo,nodeThree,nodeFour,nodeFive;
-    @FXML private JFXComboBox<Relation> selectedRel;
+    @FXML private JFXComboBox<String> selectedRel;
     @FXML private JFXToggleButton toggleThree,toggleFour,toggleFive;
     @FXML private JFXButton startBtn;
 
@@ -39,22 +39,25 @@ public class MPController implements Initializable {
     SpecialAlert alert = new SpecialAlert();
     
     public void initNetwork(ObservableList<Node> nodes, ObservableList<Relation> relation){
-        
-        int cpt = 0;
-        
+                
         sn.setNodes(nodes);
         sn.setRelations(relation);
         
         sn.setNodeChildren();
         sn.setNodeParents();
+        sn.setRelationsNames();
                 
         nodeOne.setItems(sn.getNodes());
         nodeTwo.setItems(sn.getNodes());
         nodeThree.setItems(sn.getNodes());
         nodeFour.setItems(sn.getNodes());
-        nodeFive.setItems(sn.getNodes());           
+        nodeFive.setItems(sn.getNodes());
         
-        selectedRel.setItems(sn.getRelations());     
+        nodeOne.getSelectionModel().selectFirst();
+        nodeTwo.getSelectionModel().selectLast();
+        
+        selectedRel.setItems(sn.relNames);
+        selectedRel.getSelectionModel().selectFirst();
         
         //sn.MarkPropagationInference();
         
@@ -87,6 +90,25 @@ public class MPController implements Initializable {
                     sn.getNodeByLabel(node.getValue().getLabel()).setIsMarked(false);
                 }                
             }        
+        
+    }
+    
+    public boolean checkInputs(){
+        
+        if(toggleThree.isSelected() && nodeThree.getSelectionModel().isEmpty()){
+            alert.show(strone, RESULT, Alert.AlertType.ERROR, true);
+            return false;
+        }
+        if(toggleFour.isSelected() && nodeFour.getSelectionModel().isEmpty()){
+            alert.show(strone, RESULT, Alert.AlertType.ERROR, true);
+            return false;
+        }
+        if(toggleFive.isSelected() && nodeFive.getSelectionModel().isEmpty()){
+            alert.show(strone, RESULT, Alert.AlertType.ERROR, true);
+            return false;
+        }
+        
+        return true;
         
     }
     
@@ -204,22 +226,22 @@ public class MPController implements Initializable {
             
             String msg = sn.sol;
             switch(cpt){
-                case 0: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue().toString());  
+                case 0: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());  
                         break;
-                case 1: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue().toString());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue().toString());
+                case 1: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue());
                         break;
-                case 2: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue().toString());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue().toString());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFour.getValue(), selectedRel.getValue().toString());
+                case 2: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFour.getValue(), selectedRel.getValue());
                         break;
-                case 3: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue().toString());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue().toString());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFour.getValue(), selectedRel.getValue().toString());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFive.getValue(), selectedRel.getValue().toString());
+                case 3: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFour.getValue(), selectedRel.getValue());
+                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFive.getValue(), selectedRel.getValue());
                         break;
             }
-            alert.show("RESULT", sn.sol, Alert.AlertType.INFORMATION, false);
+            alert.show(RESULT, sn.sol, Alert.AlertType.INFORMATION, false);
             
         });
         

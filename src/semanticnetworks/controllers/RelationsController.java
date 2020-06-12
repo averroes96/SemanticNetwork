@@ -14,14 +14,15 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import inc.EdgeLabel;
+import inc.Init;
+import static inc.Init.FXMLS_PATH;
+import static inc.Init.IO_ERROR;
 import inc.Node;
 import inc.Relation;
 import inc.SpecialAlert;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,10 +47,10 @@ import javafx.util.Callback;
  *
  * @author user
  */
-public class RelationsController implements Initializable {
+public class RelationsController implements Initializable, Init {
 
     @FXML JFXComboBox<Node> child,parent;
-    @FXML JFXButton addBtn,nextBtn;
+    @FXML JFXButton addBtn,nextBtn,returnBtn;
     @FXML JFXTextField nameField;
     @FXML TableView<Relation> relationTable;
     @FXML TableColumn<Relation, String> childCol,parentCol,nameCol;
@@ -125,10 +126,10 @@ public class RelationsController implements Initializable {
     public void addRelation(){
         
         if(relationExist()){
-            alert.show("RELATION EXIST", "This relation already exist", Alert.AlertType.ERROR, false);
+            alert.show(REL_EXIST, REL_EXIST_MSG, Alert.AlertType.ERROR, false);
         }
         else if(nameField.getText().trim().equals(""))
-            alert.show("EMPTY NAME", "Relation name cannot be empty", Alert.AlertType.ERROR, false);
+            alert.show(EMPTY_NAME, EMPTY_NAME_MSG2, Alert.AlertType.ERROR, false);
         else{
             Relation relation = new Relation(parent.getValue(), child.getValue(), nameField.getText());
             relationList.add(relation);        
@@ -143,14 +144,14 @@ public class RelationsController implements Initializable {
                 Stage stage = new Stage();
                 AnchorPane root ;
                 
-                if(choice.equals("mark-prop")){
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/MP.fxml"));
+                if(choice.equals(MARK_PROP)){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLS_PATH + "MP.fxml"));
                     root = (AnchorPane)loader.load();
                     MPController snControl = (MPController)loader.getController();
                     snControl.initNetwork(nodeList, relationList);
                 }
                 else{
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/Inherit.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLS_PATH + "Inherit.fxml"));
                     root = (AnchorPane)loader.load();
                     InheritController iControl = (InheritController)loader.getController();
                     iControl.initNetwork(nodeList, relationList);                    
@@ -160,7 +161,7 @@ public class RelationsController implements Initializable {
                 stage.setScene(scene);              
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(NodesController.class.getName()).log(Level.SEVERE, null, ex);
+                alert.show(IO_ERROR, ex.getMessage(), Alert.AlertType.ERROR, true);
             }
         
     }
@@ -216,7 +217,7 @@ public class RelationsController implements Initializable {
                 graphEdge.setStyle("-fx-stroke: black; -fx-stroke-width: 2;");
             });
             
-            Scene scene = new Scene(graphView, 1024, 768);
+            Scene scene = new Scene(graphView, 800, 600);
             scene.getStylesheets().add(getClass().getResource("/semanticnetworks/custom.css").toExternalForm());
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setTitle("Graph");
@@ -230,6 +231,26 @@ public class RelationsController implements Initializable {
         });
 
         nextBtn.disableProperty().bind(Bindings.size(relationTable.getItems()).isEqualTo(0));
+        
+        returnBtn.setOnAction(Action -> {
+            ((javafx.scene.Node)Action.getSource()).getScene().getWindow().hide();
+            try {
+                ((javafx.scene.Node)Action.getSource()).getScene().getWindow().hide();
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLS_PATH + "Nodes.fxml"));
+                AnchorPane root = (AnchorPane)loader.load();
+                NodesController nControl = (NodesController)loader.getController();
+                nControl.setNodes(nodeList);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);              
+                stage.show();
+            } catch (IOException ex) {
+                alert.show(IO_ERROR, ex.getMessage(), Alert.AlertType.ERROR, true);
+            }      
+            
+        });
+        
+        
     }    
     
 }

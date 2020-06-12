@@ -8,13 +8,13 @@ package semanticnetworks.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
+import inc.Init;
 import inc.Node;
 import inc.Relation;
 import inc.SemanticNetwork;
 import inc.SpecialAlert;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,7 +25,7 @@ import javafx.scene.control.Alert;
  *
  * @author user
  */
-public class InheritController implements Initializable {
+public class InheritController implements Initializable, Init {
 
     @FXML private JFXTextArea all;
     @FXML private JFXComboBox<Node> selectedNode;
@@ -104,9 +104,9 @@ public class InheritController implements Initializable {
             
             String msg = sn.getNodeProperties(selectedNode.getValue());
             if(!"".equals(msg))
-                alert.show("RESULT", msg, Alert.AlertType.INFORMATION, false);
+                alert.show(RESULT, msg, Alert.AlertType.INFORMATION, false);
             else
-                alert.show("RESULT", "No properties were found !", Alert.AlertType.INFORMATION, false);
+                alert.show(RESULT, NO_PROP_FOUND, Alert.AlertType.INFORMATION, false);
         });
 
 

@@ -7,6 +7,9 @@ package semanticnetworks.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import inc.Init;
+import static inc.Init.FXMLS_PATH;
+import static inc.Init.IO_ERROR;
 import inc.Node;
 import inc.SpecialAlert;
 import java.io.IOException;
@@ -18,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -33,21 +37,27 @@ import javafx.util.Callback;
  *
  * @author user
  */
-public class NodesController implements Initializable {
+public class NodesController implements Initializable,Init {
     
-    @FXML JFXButton addBtn,nextBtn;
+    @FXML JFXButton addBtn,nextBtn,returnBtn;
     @FXML JFXTextField nameField;
     @FXML TableView<Node> nodeTable;
     @FXML TableColumn<Node,String> nameCol;
     @FXML TableColumn<Node,Boolean> isMarkedCol;
     @FXML TableColumn actionCol;
     
-    private final ObservableList<Node> nodesList = FXCollections.observableArrayList();
+    private ObservableList<Node> nodesList = FXCollections.observableArrayList();
     String choice;
     SpecialAlert alert = new SpecialAlert();
     
     public void setChoice(String choice){
         this.choice = choice;
+    }
+    
+    public void setNodes(ObservableList<Node> nodes){
+        this.nodesList = nodes;
+        initTable();
+        nextBtn.disableProperty().bind(Bindings.size(nodeTable.getItems()).lessThan(2));        
     }
     
     public void initTable(){
@@ -97,10 +107,10 @@ public class NodesController implements Initializable {
     public void addNode(){
         
         if(nameExist()){
-            alert.show("NAME EXIST", "This name is already taken by another node", Alert.AlertType.ERROR, false);
+            alert.show(NAME_EXIST, NAME_EXIST_MSG, Alert.AlertType.ERROR, false);
         }
         else if(nameField.getText().trim().equals(""))
-            alert.show("EMPTY NAME", "Node name cannot be empty", Alert.AlertType.ERROR, false);
+            alert.show(EMPTY_NAME, EMPTY_NAME_MSG, Alert.AlertType.ERROR, false);
         else{
             Node node = new Node(nameField.getText());
             nodesList.add(node);
@@ -127,7 +137,7 @@ public class NodesController implements Initializable {
             try {
                 ((javafx.scene.Node)Action.getSource()).getScene().getWindow().hide();
                 Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/semanticnetworks/fxmls/Relations.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLS_PATH + "Relations.fxml"));
                 Pane root = (Pane)loader.load();
                 RelationsController rControl = (RelationsController)loader.getController();
                 rControl.setNodes(nodesList, choice);
@@ -135,7 +145,22 @@ public class NodesController implements Initializable {
                 stage.setScene(scene);              
                 stage.show();
             } catch (IOException ex) {
-                alert.show("IO ERROR", ex.getMessage(), Alert.AlertType.ERROR, true);
+                alert.show(IO_ERROR, ex.getMessage(), Alert.AlertType.ERROR, true);
+            }
+        });
+        
+        returnBtn.setOnAction(Action -> {
+            ((javafx.scene.Node)Action.getSource()).getScene().getWindow().hide();
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource(FXMLS_PATH + "Choice.fxml"));
+                
+                Scene scene = new Scene(root);
+                
+                stage.setScene(scene);            
+                stage.show();
+            } catch (IOException ex) {
+                alert.show(IO_ERROR, ex.getMessage(), Alert.AlertType.ERROR, true);
             }
         });
         

@@ -5,12 +5,11 @@
         <group>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/semanticnetworks/controllers/MPController.java</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/inc/SemanticNetwork.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/semanticnetworks/controllers/InheritController.java</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/semanticnetworks/controllers/NodesController.java</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/semanticnetworks/Launcher.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/semanticnetworks/fxmls/Nodes.fxml</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/semanticnetworks/controllers/ChoiceController.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/inc/Node.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/semanticnetworks/fxmls/MP.fxml</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/inc/Init.java</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/SemanticNetworks/src/semanticnetworks/controllers/RelationsController.java</file>
         </group>
     </open-files>

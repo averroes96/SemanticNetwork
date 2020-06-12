@@ -5,7 +5,6 @@
  */
 package inc;
 
-import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -19,11 +18,15 @@ public class SemanticNetwork {
     private ObservableList<Relation> relations ;
     
     public String sol = "";
+    public ObservableList<String> relNames;
 
     public SemanticNetwork() {
+        
         this.nodes = FXCollections.observableArrayList();
         this.relations = FXCollections.observableArrayList();
+        this.relNames = FXCollections.observableArrayList();
         sol = "" ;
+        
     }
 
     public ObservableList<Node> getNodes() {
@@ -299,6 +302,13 @@ public class SemanticNetwork {
                 rel.getChild().equals(child) &&
                 rel.getName().equals("is_not")));
         
+    }
+    
+    public void setRelationsNames(){
+        
+        this.getRelations().stream().filter((rel) -> (!this.relNames.contains(rel.getName()))).forEachOrdered((rel) -> {
+            relNames.add(rel.getName());
+        });
     }
     
 }
