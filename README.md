@@ -15,9 +15,9 @@ This is a study project which aim to implement Semantic networks and three of it
 [SceneBuilder](https://gluonhq.com/products/scene-builder/)
 
 ## Used libraries
-- [jfoenix-8.0.8](http://jfoenix.com/)
+- [jfoenix-8.0.8](http://jfoenix.com/) (a JavaFX material design library)
 - [commons-lang3-3.10](http://commons.apache.org/proper/commons-lang/download_lang.cgi)
-- [JavaFXSmartGraph-0.9.1](https://github.com/brunomnsilva/JavaFXSmartGraph)
+- [JavaFXSmartGraph-0.9.1](https://github.com/brunomnsilva/JavaFXSmartGraph)  (a generic (Java FX) graph visualization library)
 
 ## Procedure
 
