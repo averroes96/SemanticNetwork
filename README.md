@@ -8,10 +8,6 @@ This is a study project which aim to implement Semantic networks and three of it
 * [x] Deduce all the properties relating to a specific node.
 * [x] Display the network's graph view
 
-### Notes
-- Exceptions works only with inheritance algorithm
-- To add a relation of type simple exception just give it the name `is_not`
-
 ## IDE
 [Netbeans](https://netbeans.org/)
 
@@ -19,24 +15,53 @@ This is a study project which aim to implement Semantic networks and three of it
 [SceneBuilder](https://gluonhq.com/products/scene-builder/)
 
 ## Used libraries
-- [jfoenix-8.0.8](http://jfoenix.com/)
+- [jfoenix-8.0.8](http://jfoenix.com/) (a JavaFX material design library)
+- [JavaFXSmartGraph-0.9.1](https://github.com/brunomnsilva/JavaFXSmartGraph)  (a generic JavaFX graph visualization library)
 - [commons-lang3-3.10](http://commons.apache.org/proper/commons-lang/download_lang.cgi)
-- [JavaFXSmartGraph-0.9.1](https://github.com/brunomnsilva/JavaFXSmartGraph)
 
-## Screenshots
+## Procedure
 
-Nodes           |
-:---------------------:|
-![Nodes interface](screenshots/2.png) |
+### Choice
+When launching the application, this interface is the first interface with which a user will interact, you must chose the algorithm you want to use before building the network.
 
-Relations           |
-:---------------------:|
-![Relations interface](screenshots/3.png) |
+<p align="center">
+<img src="screenshots/1.png">
+</p>
 
-Inheritance           |
-:---------------------:|
-![Inheritance interface](screenshots/8.png) |
+### Nodes entry
+Define at least 2 nodes by giving a name to each node and click on `ADD`, the added nodes are displayed in the table below where you can delete any node.
+  
+<p align="center">
+<img src="screenshots/2.png">
+</p>
 
-Mark-Propagation           |
-:---------------------:|
-![Mark-Propagation interface](screenshots/5.png) |
+### Relations entry
+Add at least one relation by specifying its parent/child nodes and its name, the table below as with the interface of the nodes displays all the relations added and gives the possibility of deleting those chosen.
+  
+<p align="center">
+<img src="screenshots/3.png">
+</p>
+
+### Graph
+After setting up the nodes and relations of our network and clicking on `NEXT`, an interface will appear displaying the generated graph.
+  
+<p align="center">
+<img src="screenshots/4.png">
+</p>
+
+### Mark-Propagation
+Select two nodes (M1: start, M2: goal) - you can add more nodes if you wish by switching the toggle button for each Mi - you must also specify the relation sought then click on `START` to launch the algorithm.
+
+<p align="center">
+<img src="screenshots/5.png">
+</p>
+
+### Inheritance
+In this interface, the inherited relations are displayed in the text zone above, you can deduct all the properties of a certain node by selecting it from the `ChoiceBox` then by clicking on `START`, a panel of dialog will appear showing these properties.
+<p align="center">
+<img src="screenshots/6.png">
+</p>
+
+## Notes
+- Exceptions works only with inheritance algorithm
+- To add a relation of type simple exception just give it the name `is_not`
