@@ -181,31 +181,20 @@ public class RelationsController implements Initializable, Init {
                                             && rel.getParent().equals(parent.getValue())
                             )
                                 );
-    }     
+    }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    // Function charged for creating the network's graph, if you don't want to include the graph just delete this call
+    public void createGraph(){
         
-        initTable();
-        
-        
-        addBtn.setOnAction(Action->{
-            addRelation();
-        });
-        
-        nextBtn.setOnAction(Action->{
-            
             Digraph<Node, EdgeLabel> g = new DigraphEdgeList<>();
-            int cpt=0;
             
             nodeList.forEach((node) -> {
                 g.insertVertex(node);
             });
             
-            for(Relation relation : relationList){
-                cpt++;
-               g.insertEdge(relation.getChild(), relation.getParent(), new EdgeLabel(relation.getParent(), relation.getChild(), relation.getName()));
-            }
+            relationList.forEach((relation) -> {
+                g.insertEdge(relation.getChild(), relation.getParent(), new EdgeLabel(relation.getParent(), relation.getChild(), relation.getName()));
+            });
             
             SmartPlacementStrategy strategy = new SmartCircularSortedPlacementStrategy();
             SmartGraphPanel<Node, EdgeLabel> graphView = new SmartGraphPanel<>(g, strategy);
@@ -220,7 +209,7 @@ public class RelationsController implements Initializable, Init {
                 graphEdge.setStyle("-fx-stroke: black; -fx-stroke-width: 2;");
             });
             
-            Scene scene = new Scene(graphView, 800, 600);
+            Scene scene = new Scene(graphView, 900, 650);
             scene.getStylesheets().add(getClass().getResource("/semanticnetworks/custom.css").toExternalForm());
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.getIcons().add(new Image(RelationsController.class.getResourceAsStream(APP_GRAPH)));
@@ -229,9 +218,27 @@ public class RelationsController implements Initializable, Init {
             stage.show();
 
             //IMPORTANT - Called after scene is displayed so we can have width and height values
-            graphView.init();
-
+            graphView.init();        
+        
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        initTable();
+        
+        
+        addBtn.setOnAction(Action->{
+            addRelation();
+        });
+        
+        nextBtn.setOnAction(Action->{
+            
+            // Function charged for creating the network's graph, if you don't want to include the graph just delete this call            
+            createGraph();
+            
             initSemanticNetwork(Action, choice);
+            
         });
 
         nextBtn.disableProperty().bind(Bindings.size(relationTable.getItems()).isEqualTo(0));
