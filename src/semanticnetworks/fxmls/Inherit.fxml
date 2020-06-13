@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -36,15 +38,22 @@
                   <Font name="Calibri" size="18.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="selectedNode" focusColor="#408ec6" prefHeight="40.0" prefWidth="175.0" style="-fx-background-color: #7a2048; -fx-text-fill: #eee;" unFocusColor="#1e2761">
+            <JFXComboBox fx:id="selectedNode" focusColor="#408ec6" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #7a2048; -fx-text-fill: #eee;" unFocusColor="#1e2761">
                <effect>
                   <DropShadow height="15.0" radius="7.0" width="15.0" />
                </effect>
             </JFXComboBox>
-            <JFXButton fx:id="startBtn" buttonType="RAISED" defaultButton="true" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408ec6;" text="START" textFill="#1e2761">
+            <JFXButton fx:id="startBtn" buttonType="RAISED" defaultButton="true" prefHeight="40.0" prefWidth="175.0" style="-fx-background-color: #408ec6;" text="START" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icons8_play_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
          </children>
       </VBox>

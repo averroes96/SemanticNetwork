@@ -13,6 +13,14 @@ public interface Init {
     
     String FXMLS_PATH = "/semanticnetworks/fxmls/";
     
+    String APP_ICON = "/img/app.png";
+    
+    String APP_GRAPH = "/img/graph.png";
+    
+    String DELETE_BTN_CSS = "-fx-background-color : #7a2048; -fx-text-fill: white; -fx-background-radius: 30;fx-background-insets: 0; -fx-cursor: hand;";
+    
+    // Messages
+    
     String IO_ERROR = "IO ERROR !";
     
     String RESULT = "RESULT";
@@ -36,5 +44,9 @@ public interface Init {
     String REL_EXIST = "RELATION EXIST !";
     
     String REL_EXIST_MSG = "This relation already exist";
+    
+    String EMPTY_FIELDS = "EMPTY FIELDS !";
+    
+    String EMPTY_FIELDS_MSG = "Please make sure all the required fields are selected";    
     
 }

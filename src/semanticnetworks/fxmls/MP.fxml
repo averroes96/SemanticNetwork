@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -76,10 +78,17 @@
       </HBox>
       <VBox alignment="CENTER" layoutX="15.0" layoutY="350.0" prefHeight="100.0" prefWidth="570.0" spacing="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <children>
-            <Label alignment="CENTER" focusTraversable="false" prefHeight="20.0" prefWidth="100.0" text="RELATION" textFill="#1e2761">
+            <Label alignment="CENTER" focusTraversable="false" prefHeight="25.0" prefWidth="150.0" text="RELATION" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icons8_tree_structure_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Label>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="570.0">
                <children>
@@ -94,6 +103,13 @@
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icons8_play_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
          </children>
       </HBox>

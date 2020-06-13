@@ -5,11 +5,13 @@
  */
 package semanticnetworks;
 
+import static inc.Init.APP_ICON;
 import static inc.Init.FXMLS_PATH;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -20,6 +22,7 @@ public class Launcher extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        stage.getIcons().add(new Image(Launcher.class.getResourceAsStream(APP_ICON)));
         Parent root = FXMLLoader.load(getClass().getResource(FXMLS_PATH + "Choice.fxml"));
         
         Scene scene = new Scene(root);

@@ -8,6 +8,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -31,7 +33,7 @@
             <Font name="Calibri" size="24.0" />
          </font>
       </Label>
-      <VBox alignment="TOP_CENTER" layoutX="25.0" layoutY="104.0" prefHeight="125.0" prefWidth="550.0" spacing="20.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+      <VBox alignment="TOP_CENTER" layoutX="25.0" layoutY="111.0" prefHeight="115.0" prefWidth="617.0" spacing="20.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
          <children>
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="550.0" spacing="20.0">
                <children>
@@ -39,7 +41,7 @@
                      <effect>
                         <DropShadow height="15.0" radius="7.0" width="15.0" />
                      </effect></JFXComboBox>
-                  <JFXTextField fx:id="nameField" alignment="CENTER" focusColor="#7a2048" prefHeight="40.0" prefWidth="175.0" promptText="Name" style="-fx-prompt-text-fill: #aaa; -fx-text-fill: #1e2761;" unFocusColor="#aaaaaa">
+                  <JFXTextField fx:id="nameField" alignment="CENTER" focusColor="#1e2761" prefHeight="40.0" prefWidth="175.0" promptText="Name" style="-fx-prompt-text-fill: #aaa; -fx-text-fill: #1e2761;" unFocusColor="#aaaaaa">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
@@ -53,36 +55,79 @@
                      </effect></JFXComboBox>
                </children>
             </HBox>
-            <JFXButton fx:id="addBtn" buttonType="RAISED" defaultButton="true" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408ec6;" text="ADD" textFill="#1e2761">
+            <JFXButton fx:id="addBtn" buttonType="RAISED" defaultButton="true" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #408ec6;" text="ADD" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icons8_add_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
          </children>
       </VBox>
       <HBox alignment="CENTER" layoutX="40.0" layoutY="536.0" prefHeight="50.0" prefWidth="520.0" spacing="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <children>
-            <JFXButton fx:id="returnBtn" buttonType="RAISED" cancelButton="true" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408ec6;" text="RETURN" textFill="#1e2761">
+            <JFXButton fx:id="returnBtn" buttonType="RAISED" cancelButton="true" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #408ec6;" text="RETURN" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icons8_left_3_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
             <JFXButton fx:id="nextBtn" buttonType="RAISED" cancelButton="true" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408ec6;" text="NEXT" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icons8_ok_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
          </children>
       </HBox>
-      <Label alignment="CENTER" layoutX="72.0" layoutY="64.0" prefHeight="40.0" prefWidth="122.0" text="Child" textFill="#1e2761">
-         <font>
-            <Font name="Calibri" size="18.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="457.0" layoutY="64.0" prefHeight="40.0" prefWidth="122.0" text="Parent" textFill="#1e2761">
-         <font>
-            <Font name="Calibri" size="18.0" />
-         </font>
-      </Label>
+      <HBox alignment="CENTER_LEFT" layoutX="40.0" layoutY="67.0" prefHeight="36.0" prefWidth="570.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+         <children>
+            <Label alignment="CENTER" focusTraversable="false" prefHeight="36.0" prefWidth="175.0" text="Child" textFill="#1e2761">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icons8_stacked_organizational_chart_highlighted_first_node_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="398.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="36.0" prefWidth="175.0" text="Parent" textFill="#1e2761">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/icons8_stacked_organizational_chart_highlighted_parent_node_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

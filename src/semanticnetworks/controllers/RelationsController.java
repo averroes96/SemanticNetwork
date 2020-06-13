@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import inc.EdgeLabel;
 import inc.Init;
+import static inc.Init.APP_ICON;
 import static inc.Init.FXMLS_PATH;
 import static inc.Init.IO_ERROR;
 import inc.Node;
@@ -37,6 +38,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -106,7 +108,7 @@ public class RelationsController implements Initializable, Init {
                         Relation relation = getTableView().getItems().get(getIndex());
                         deleteRelation(relation);
                     });
-                    delete.setStyle("-fx-background-color : red; -fx-text-fill: white; -fx-background-radius: 30;fx-background-insets: 0; -fx-cursor: hand;");                    
+                    delete.setStyle(DELETE_BTN_CSS);                    
                     setGraphic(delete);
                     setText(null);               
                     
@@ -142,6 +144,7 @@ public class RelationsController implements Initializable, Init {
             try {
                 ((javafx.scene.Node)Action.getSource()).getScene().getWindow().hide();
                 Stage stage = new Stage();
+                stage.getIcons().add(new Image(RelationsController.class.getResourceAsStream(APP_ICON)));
                 AnchorPane root ;
                 
                 if(choice.equals(MARK_PROP)){
@@ -201,7 +204,7 @@ public class RelationsController implements Initializable, Init {
             
             for(Relation relation : relationList){
                 cpt++;
-               g.insertEdge(relation.getParent(), relation.getChild(), new EdgeLabel(relation.getParent(), relation.getChild(), relation.getName()));
+               g.insertEdge(relation.getChild(), relation.getParent(), new EdgeLabel(relation.getParent(), relation.getChild(), relation.getName()));
             }
             
             SmartPlacementStrategy strategy = new SmartCircularSortedPlacementStrategy();
@@ -220,6 +223,7 @@ public class RelationsController implements Initializable, Init {
             Scene scene = new Scene(graphView, 800, 600);
             scene.getStylesheets().add(getClass().getResource("/semanticnetworks/custom.css").toExternalForm());
             Stage stage = new Stage(StageStyle.DECORATED);
+            stage.getIcons().add(new Image(RelationsController.class.getResourceAsStream(APP_GRAPH)));
             stage.setTitle("Graph");
             stage.setScene(scene);
             stage.show();
@@ -237,6 +241,7 @@ public class RelationsController implements Initializable, Init {
             try {
                 ((javafx.scene.Node)Action.getSource()).getScene().getWindow().hide();
                 Stage stage = new Stage();
+                stage.getIcons().add(new Image(RelationsController.class.getResourceAsStream(APP_ICON)));
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLS_PATH + "Nodes.fxml"));
                 AnchorPane root = (AnchorPane)loader.load();
                 NodesController nControl = (NodesController)loader.getController();

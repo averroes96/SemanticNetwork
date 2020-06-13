@@ -29,6 +29,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -86,7 +87,7 @@ public class NodesController implements Initializable,Init {
                         Node Node = getTableView().getItems().get(getIndex());
                         deleteNode(Node);
                     });
-                    delete.setStyle("-fx-background-color : red; -fx-text-fill: white; -fx-background-radius: 30;fx-background-insets: 0; -fx-cursor: hand;");                    
+                    delete.setStyle(DELETE_BTN_CSS);                    
                     setGraphic(delete);
                     setText(null);               
                     
@@ -137,6 +138,7 @@ public class NodesController implements Initializable,Init {
             try {
                 ((javafx.scene.Node)Action.getSource()).getScene().getWindow().hide();
                 Stage stage = new Stage();
+                stage.getIcons().add(new Image(NodesController.class.getResourceAsStream(APP_ICON)));
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLS_PATH + "Relations.fxml"));
                 Pane root = (Pane)loader.load();
                 RelationsController rControl = (RelationsController)loader.getController();
@@ -153,6 +155,7 @@ public class NodesController implements Initializable,Init {
             ((javafx.scene.Node)Action.getSource()).getScene().getWindow().hide();
             try {
                 Stage stage = new Stage();
+                stage.getIcons().add(new Image(NodesController.class.getResourceAsStream(APP_ICON)));
                 Parent root = FXMLLoader.load(getClass().getResource(FXMLS_PATH + "Choice.fxml"));
                 
                 Scene scene = new Scene(root);

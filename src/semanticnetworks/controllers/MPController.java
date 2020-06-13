@@ -96,19 +96,12 @@ public class MPController implements Initializable,Init {
     public boolean checkInputs(){
         
         if(toggleThree.isSelected() && nodeThree.getSelectionModel().isEmpty()){
-            alert.show(strone, RESULT, Alert.AlertType.ERROR, true);
             return false;
         }
         if(toggleFour.isSelected() && nodeFour.getSelectionModel().isEmpty()){
-            alert.show(strone, RESULT, Alert.AlertType.ERROR, true);
             return false;
         }
-        if(toggleFive.isSelected() && nodeFive.getSelectionModel().isEmpty()){
-            alert.show(strone, RESULT, Alert.AlertType.ERROR, true);
-            return false;
-        }
-        
-        return true;
+        return !(toggleFive.isSelected() && nodeFive.getSelectionModel().isEmpty());
         
     }
     
@@ -213,35 +206,41 @@ public class MPController implements Initializable,Init {
 
         startBtn.setOnAction(Action -> {
             
-            sn.sol = "";
-            
-            int cpt = 0;
+            if(checkInputs()){
 
-            if(toggleThree.isSelected())
-                cpt++;
-            if(toggleFour.isSelected())
-                cpt++;
-            if(toggleFive.isSelected())
-                cpt++;            
-            
-            String msg = sn.sol;
-            switch(cpt){
-                case 0: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());  
-                        break;
-                case 1: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue());
-                        break;
-                case 2: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFour.getValue(), selectedRel.getValue());
-                        break;
-                case 3: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFour.getValue(), selectedRel.getValue());
-                        sn.MarkPropagationInference(nodeOne.getValue(), nodeFive.getValue(), selectedRel.getValue());
-                        break;
+                sn.sol = "";
+
+                int cpt = 0;
+
+                if(toggleThree.isSelected())
+                    cpt++;
+                if(toggleFour.isSelected())
+                    cpt++;
+                if(toggleFive.isSelected())
+                    cpt++;            
+
+                String msg = sn.sol;
+                switch(cpt){
+                    case 0: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());  
+                            break;
+                    case 1: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());
+                            sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue());
+                            break;
+                    case 2: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());
+                            sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue());
+                            sn.MarkPropagationInference(nodeOne.getValue(), nodeFour.getValue(), selectedRel.getValue());
+                            break;
+                    case 3: sn.MarkPropagationInference(nodeOne.getValue(), nodeTwo.getValue(), selectedRel.getValue());
+                            sn.MarkPropagationInference(nodeOne.getValue(), nodeThree.getValue(), selectedRel.getValue());
+                            sn.MarkPropagationInference(nodeOne.getValue(), nodeFour.getValue(), selectedRel.getValue());
+                            sn.MarkPropagationInference(nodeOne.getValue(), nodeFive.getValue(), selectedRel.getValue());
+                            break;
+                }
+                alert.show(RESULT, sn.sol, Alert.AlertType.INFORMATION, false);
             }
-            alert.show(RESULT, sn.sol, Alert.AlertType.INFORMATION, false);
+            else{
+                alert.show(EMPTY_FIELDS, EMPTY_FIELDS_MSG, Alert.AlertType.ERROR, false);
+            }
             
         });
         

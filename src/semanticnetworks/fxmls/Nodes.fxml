@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -29,32 +31,61 @@
       </Label>
       <HBox alignment="CENTER" layoutX="20.0" layoutY="69.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <children>
-            <JFXTextField fx:id="nameField" alignment="CENTER" focusColor="#7a2048" prefHeight="40.0" prefWidth="250.0" promptText="Node's name" style="-fx-prompt-text-fill: #aaa; -fx-text-fill: #1e2761;" unFocusColor="#aaaaaa">
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/icons8_autograph_48px_4.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="nameField" alignment="CENTER" focusColor="#1e2761" prefHeight="40.0" prefWidth="250.0" promptText="Node's name" style="-fx-prompt-text-fill: #aaa; -fx-text-fill: #1e2761;" unFocusColor="#aaaaaa">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="-20.0" />
+               </HBox.margin>
             </JFXTextField>
             <JFXButton fx:id="addBtn" buttonType="RAISED" defaultButton="true" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408ec6;" text="ADD" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icons8_add_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="20.0" layoutY="548.0" prefHeight="75.0" prefWidth="200.0" spacing="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <children>
-            <JFXButton fx:id="returnBtn" buttonType="RAISED" cancelButton="true" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408ec6;" text="RETURN" textFill="#1e2761">
+            <JFXButton fx:id="returnBtn" buttonType="RAISED" cancelButton="true" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #408ec6;" text="RETURN" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icons8_left_3_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
             <JFXButton fx:id="nextBtn" buttonType="RAISED" layoutX="290.0" layoutY="28.0" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408ec6;" text="NEXT" textFill="#1e2761">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icons8_ok_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
          </children>
       </HBox>
