@@ -65,10 +65,78 @@ In this interface, the inherited relations are displayed in the text zone above,
 <img src="screenshots/6.png">
 </p>
 
+## Tests
+Tests were carried on 3 examples taken from our course where each example deal with one of the techniques:
+
+### Example 1 (Mark-Propagation)
+<p align="center">
+<img src="screenshots/5.png">
+</p>
+
+#### Arcs (id => name)
+
+0 = > Reiter\
+1 = > Modes de Représentations des connaissances\
+2 = > Axe-IA\
+3 = > Modes Logiques\
+4 = > Modes Graphiques\
+5 = > Logiques Classiques\
+6 = > Logiques Non classiques\
+7 = > Logique D’ordre 1\
+8 = > Logique D’ordre 0\
+9 = > Logique Modale\
+10 = > ReiterLogique Des défauts\
+11 = > Logiques De description\
+12 = > Axiome A4\
+13 = > Système T\
+14 = > Système D\
+15 = > Système S5\
+16 = > Axiome A7\
+17 = > a>a
+
+#### Relations (parent, child, name)
+
+(1, 0, dev)\
+(2, 1, is_a)\
+(1, 3, is_a)\
+(1, 4, is_a)\
+(3, 6, is_a)\
+(3, 5, is_a)\
+(5, 7, is_a)\
+(5, 8, is_a)\
+(6, 9, is_a)\
+(6, 10, is_a)\
+(6, 11, is_a)\
+(12, 7, contient)\
+(9, 13, is_a)\
+(9, 14, is_a)\
+(9, 15, is_a)\
+(16, 13, contient)\
+(16, 15, contient)\
+(16, 17, is_a)
+
+
+#### M1 : Modes de Représentations des connaissances
+#### M2 : Axiome A7
+#### Relation : contient
+
+### Example 2 (Inheritance)
+<p align="center">
+<img src="screenshots/5.png">
+</p>
+
+### Example 3 (Exceptions)
+<p align="center">
+<img src="screenshots/5.png">
+</p>
+
 ## How to contribute ?
-* Enhancing graph's generation as the used library limit options for making different arcs
-* Adding exceptions for Mark-Propagation algorithm
-* Improving Mark-Propagation algorithm in a way that it traces all the M1s
+* Enhancing graph's generation as the used library limit options as for example : making different typs arcs.
+* Adding exceptions for Mark-Propagation algorithm.
+* Adding other types of exceptions.
+* Adding new techniques.
+* Improving Mark-Propagation algorithm in a way that it traces all the M1s.
+* Testing the techniques on other examples.
 
 ## Notes
 - Exceptions works only with inheritance algorithm
