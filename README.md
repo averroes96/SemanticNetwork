@@ -73,7 +73,7 @@ Tests were carried on 3 examples taken from our course where each example deal w
 <img src="screenshots/5.png">
 </p>
 
-#### Arcs (id => name)
+#### Nodes (id => name)
 
 0 = > Reiter\
 1 = > Modes de Représentations des connaissances\
@@ -94,7 +94,7 @@ Tests were carried on 3 examples taken from our course where each example deal w
 16 = > Axiome A7\
 17 = > a>a
 
-#### Relations (parent, child, name)
+#### Relations (parent_node, child_node, name)
 
 (1, 0, dev)\
 (2, 1, is_a)\
@@ -116,16 +116,89 @@ Tests were carried on 3 examples taken from our course where each example deal w
 (16, 17, is_a)
 
 
-#### M1 : Modes de Représentations des connaissances
-#### M2 : Axiome A7
-#### Relation : contient
+#### M1: Modes de Représentations des connaissances
+#### M2: Axiome A7
+#### Relation: contient
+#### Solution(s): Système T, Système S5
+#### Execution:
+
+<p align="center">
+<img src="screenshots/5.png">
+</p>
+<p align="center">
+<img src="screenshots/5.png">
+</p>
 
 ### Example 2 (Inheritance)
 <p align="center">
 <img src="screenshots/5.png">
 </p>
 
+#### Nodes (id => name)
+
+0 = > mortel\
+1 = > animal\
+2 = > Vertébrés\
+3 = > Oiseaux\
+4 = > Moineaux\
+5 = > Titi\
+6 = > os\
+7 = > Bec_Plumes_Ailes
+
+#### Relations (parent_node, child_node, name)
+
+(0, 1, est_un)\
+(1, 2, est_un)\
+(2, 3, est_un)\
+(3, 4, est_un)\
+(4, 5, est_un)\
+(6, 2, a_pour_partie)\
+(7, 3, a_pour_partie)
+
+#### Selected node : Titi
+
+#### Execution:
+<p align="center">
+<img src="screenshots/5.png">
+</p>
+<p align="center">
+<img src="screenshots/5.png">
+</p>
+
+
 ### Example 3 (Exceptions)
+<p align="center">
+<img src="screenshots/5.png">
+</p>
+
+#### Nodes (id => name)
+
+0 = > Les Français\
+1 = > Libanais\
+2 = > Chrétiens libanais\
+3 = > Melkites\
+4 = > Maronite\
+5 = > Non Arabe\
+
+#### Relations (parent_node, child_node, name)
+
+(0, 1, parle)\
+(0, 2, is_not) - Exception\
+(0, 3, is_not) - Exception\
+(1, 2, is_a)\
+(2, 3, is_a)\
+(4, 2, is_a)\
+(5, 2, is_a)\
+(4, 3, is_not) - Exception\
+(5, 3, is_not) - Exception
+
+#### Selected node : Titi
+
+#### Execution:
+
+<p align="center">
+<img src="screenshots/5.png">
+</p>
 <p align="center">
 <img src="screenshots/5.png">
 </p>
