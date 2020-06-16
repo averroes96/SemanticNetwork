@@ -192,7 +192,7 @@ Tests were carried on 3 examples taken from our course where each example deal w
 (4, 3, is_not) - Exception\
 (5, 3, is_not) - Exception
 
-#### Selected node : Titi
+#### Selected node : Melkites
 
 #### Execution:
 
