@@ -203,7 +203,7 @@ Tests were carried on 3 examples taken from our course where each example deal w
 <img src="screenshots/16.png">
 </p>
 
-## How to contribute ?
+## How to contribute to this ?
 * Enhancing graph's generation as the used library limit options as for example : making different typs arcs.
 * Adding exceptions for Mark-Propagation algorithm.
 * Adding other types of exceptions.
