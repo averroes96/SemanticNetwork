@@ -1,5 +1,8 @@
 # SemanticNetwork
-This is a study project which aim to implement Semantic networks and three of its major infering techniques : Mark-Propagation, Inheritance and exceptions.
+This is a study project which aim to implement Semantic networks and three of its major infering techniques : 
+- Mark-Propagation
+- Inheritance 
+- Exceptions
 
 ## Features
 * [x] Ability to create a semantic network defined by a set of nodes and relations.
@@ -61,6 +64,11 @@ In this interface, the inherited relations are displayed in the text zone above,
 <p align="center">
 <img src="screenshots/6.png">
 </p>
+
+## How to contribute ?
+* Enhancing graph's generation as the used library limit options for making different arcs
+* Adding exceptions for Mark-Propagation algorithm
+* Improving Mark-Propagation algorithm in a way that it traces all the M1s
 
 ## Notes
 - Exceptions works only with inheritance algorithm
