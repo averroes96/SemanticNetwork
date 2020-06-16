@@ -70,7 +70,7 @@ Tests were carried on 3 examples taken from our course where each example deal w
 
 ### Example 1 (Mark-Propagation)
 <p align="center">
-<img src="screenshots/5.png">
+<img src="screenshots/mp.png">
 </p>
 
 #### Nodes (id => name)
@@ -123,15 +123,15 @@ Tests were carried on 3 examples taken from our course where each example deal w
 #### Execution:
 
 <p align="center">
-<img src="screenshots/5.png">
+<img src="screenshots/10.png">
 </p>
 <p align="center">
-<img src="screenshots/5.png">
+<img src="screenshots/11.png">
 </p>
 
 ### Example 2 (Inheritance)
 <p align="center">
-<img src="screenshots/5.png">
+<img src="screenshots/inheritance.png">
 </p>
 
 #### Nodes (id => name)
@@ -159,16 +159,16 @@ Tests were carried on 3 examples taken from our course where each example deal w
 
 #### Execution:
 <p align="center">
-<img src="screenshots/5.png">
+<img src="screenshots/13.png">
 </p>
 <p align="center">
-<img src="screenshots/5.png">
+<img src="screenshots/14.png">
 </p>
 
 
 ### Example 3 (Exceptions)
 <p align="center">
-<img src="screenshots/5.png">
+<img src="screenshots/exceptions.png">
 </p>
 
 #### Nodes (id => name)
@@ -197,10 +197,10 @@ Tests were carried on 3 examples taken from our course where each example deal w
 #### Execution:
 
 <p align="center">
-<img src="screenshots/5.png">
+<img src="screenshots/15.png">
 </p>
 <p align="center">
-<img src="screenshots/5.png">
+<img src="screenshots/16.png">
 </p>
 
 ## How to contribute ?
