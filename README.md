@@ -10,7 +10,7 @@ This is a study project which aim to implement Semantic networks and three of it
 * [x] Saturate the network (infer everything that can be using Inheritance algorithm).
 * [x] Deduce all the properties relating to a specific node.
 * [x] Display the network's graph view
-
+-------------------------------------------------------------------------------------
 ## IDE
 [Netbeans](https://netbeans.org/)
 
@@ -22,6 +22,11 @@ This is a study project which aim to implement Semantic networks and three of it
 - [JavaFXSmartGraph-0.9.1](https://github.com/brunomnsilva/JavaFXSmartGraph)  (a generic JavaFX graph visualization library)
 - [commons-lang3-3.10](http://commons.apache.org/proper/commons-lang/download_lang.cgi)
 
+## Setup
+- `git clone "https://github.com/averroes96/SemanticNetwork"` or download the repository as a zip
+- Import the repository to NetBeans
+- Download the mentionned libraries and then Import them into your netBeans project
+----------------------------------------------------------------------------------------------------------
 ## Procedure
 
 ### Choice
@@ -64,7 +69,7 @@ In this interface, the inherited relations are displayed in the text zone above,
 <p align="center">
 <img src="screenshots/6.png">
 </p>
-
+--------------------------------------------------------------------------------------------------------------------
 ## Tests
 Tests were carried on 3 examples taken from our course where each example deal with one of the techniques:
 
