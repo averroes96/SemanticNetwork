@@ -69,7 +69,9 @@ In this interface, the inherited relations are displayed in the text zone above,
 <p align="center">
 <img src="screenshots/6.png">
 </p>
---------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------
+
 ## Tests
 Tests were carried on 3 examples taken from our course where each example deal with one of the techniques:
 
